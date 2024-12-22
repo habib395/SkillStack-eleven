@@ -38,7 +38,7 @@ const Login = () => {
     }
   return (
     <div>
-      <form onSubmit={handleSubmit} className="card-body">
+      <form onSubmit={handleSubmit} className="card-body bg-base-200 min-h-screen w-11/12 mx-auto rounded-lg my-10">
         <div className="form-control">
           <label className="label">
             <span className="label-text">Email</span>
