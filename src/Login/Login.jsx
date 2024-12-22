@@ -64,7 +64,7 @@ const Login = () => {
             required
           />
           <label className="label">
-            <NavLink to={`forget?email=${encodeURIComponent(email)}`} className="label-text-alt link link-hover">
+            <NavLink to={`/forget?email=${encodeURIComponent(email)}`} className="label-text-alt link link-hover">
               Forgot password?
             </NavLink>
           </label>

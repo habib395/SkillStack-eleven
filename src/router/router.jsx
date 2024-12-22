@@ -12,6 +12,7 @@ import Queries from '../pages/Home/Queries/Queries';
 import RecommendationMe from '../pages/RecommendationMe/recommendationMe';
 import MyQueries from '../pages/MyQueries/MyQueries';
 import MyRecommendation from '../pages/MyRecommendation/MyRecommendation';
+import Forget from '../pages/Forget/Forget';
 
   const router = createBrowserRouter([
     {
@@ -25,6 +26,10 @@ import MyRecommendation from '../pages/MyRecommendation/MyRecommendation';
         {
           path:'/login',
           element:<Login></Login>
+        },
+        {
+          path:'/forget',
+          element: <Forget></Forget>
         },
         {
           path:"/queries",
