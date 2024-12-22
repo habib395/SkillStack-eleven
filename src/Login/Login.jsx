@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../AuthProvider/AuthProvider";
-import { NavLink, useLocation, useNavigation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { toast, ToastContainer } from "react-toastify";
 import { FaGoogle } from "react-icons/fa";
@@ -11,7 +11,7 @@ const Login = () => {
     const [error, setError] = useState("")
     const [email, setEmail]= useState("")
     const location = useLocation()
-    const navigate = useNavigation()
+    const navigate = useNavigate()
     const googleProvider = new GoogleAuthProvider()
 
     const handleSubmit = (e) =>{
