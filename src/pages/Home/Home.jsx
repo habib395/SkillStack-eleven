@@ -1,9 +1,12 @@
 import React from "react";
 import Slider from "../../Slider/Slider";
 import About from "./About";
+import { useLoaderData } from "react-router-dom";
+import ProductCard from "../ProductCard/ProductCard";
 // import { Bounce } from 'react-awesome-reveal';
 
 const Home = () => {
+  const products = useLoaderData()
   return (
     <div className="min-h-screen bg-white text-gray-900">
       <Slider></Slider>
@@ -13,7 +16,11 @@ const Home = () => {
           OUR PRODUCT
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-2 sm:p-10">
-
+        {
+          products.map((product, idx) => (
+            <ProductCard key={idx} product={product}></ProductCard>
+          ))
+        }
         </div>
       </div>
       {/* about us section  */}
