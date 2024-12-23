@@ -38,7 +38,7 @@ const Navbar = () => {
                 Recommendations For Me
               </NavLink>
               <NavLink
-                to="/myQueries"
+                to={`/queries/${user?.email}`}
                 className="block sm:inline-block py-1 sm:py-0 sm:font-bold ml-4"
               >
                 My Queries
