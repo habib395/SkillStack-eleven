@@ -7,6 +7,15 @@ const Home = () => {
   return (
     <div className="min-h-screen bg-white text-gray-900">
       <Slider></Slider>
+      {/* our products section */}
+      <div>
+      <h2 className="text-green-500 font-bold text-xl sm:text-4xl text-center py-3">
+          OUR PRODUCT
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-2 sm:p-10">
+
+        </div>
+      </div>
       {/* about us section  */}
       <div className="py-10">
         <h2 className="text-green-700 font-bold text-xl sm:text-4xl text-center py-3">
