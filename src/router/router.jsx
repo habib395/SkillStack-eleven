@@ -13,6 +13,7 @@ import AddQueries from "../pages/AddQueries/AddQueries";
 import PrivateRoutes from "../PrivateRoutes/PrivateRoutes";
 import ListQuery from "../pages/ListQueries/ListQuery";
 import Update from "../Update/Update";
+import Details from "../pages/Details/Details";
 
 const router = createBrowserRouter([
   {
@@ -29,12 +30,28 @@ const router = createBrowserRouter([
         element: <Login></Login>,
       },
       {
+        path:"details/:id",
+        element:<Details></Details>,
+        loader: async ({ params }) =>{
+          const res = await fetch("http://localhost:5000/addQueries")
+          const data = await res.json()
+          const singleData = data.find((d) => d._id == params.id)
+          return singleData
+        },
+      },
+      // {
+      //   path: "/allQueries",
+      //   element:<AllQueries></AllQueries>,
+      //   loader: () => fetch("http://localhost:5000/addQueries"),
+      // },
+      {
         path: "/forget",
         element: <Forget></Forget>,
       },
       {
         path: "/queries",
         element: <Queries></Queries>,
+        loader: () => fetch("http://localhost:5000/addQueries"),
       },
       {
         path: "/recommendation_me",
