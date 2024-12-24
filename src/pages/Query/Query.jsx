@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 const Query = ({ product }) => {
-  console.log(product);
+  // console.log(product);
 const { _id, productBrand, recommendationCount} = product
   return (
     <div className="card card-compact bg-base-100 shadow-xl">

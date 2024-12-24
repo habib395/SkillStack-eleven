@@ -5,7 +5,7 @@ import Query from "../../Query/Query";
 const Queries = () => {
   const allProducts = useLoaderData();
   const [products, setProducts] = useState(allProducts);
-  console.log(products  )
+  // console.log(products  )
 //   console.log(products);
     const handleSortedPrice = () =>{
         const sortedProducts = [...products].sort((a, b) => 

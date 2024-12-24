@@ -1,21 +1,18 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { data, useLoaderData, useParams } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
 import ListRecommendation from "../../ListRecommendation/ListRecommendation";
 
 const Details = () => {
 
+  // const { email } = useParams()
     const { user } = useContext(AuthContext)
+    console.log(user)
     const [recommendation, setRecommendation] = useState([])
 
-    useEffect(() =>{
-    fetch("http://localhost:5000/addRecommendation")
-    .then((res) => res.json())
-    .then((data) => setRecommendation(data))
-    .catch((error) => console.log("Error fetching recommendation:", error))
-    }, [])
-    console.log(recommendation)
+    
+    // console.log(recommendation)
 
     const {
       _id,
@@ -31,6 +28,13 @@ const Details = () => {
       BoycottingReasonDetails,
     } = useLoaderData();
 
+    useEffect(() =>{
+      fetch(`http://localhost:5000/addRecommendation/${_id}`)
+      .then((res) => res.json())
+      .then((data) => setRecommendation(data))
+      .catch((error) => console.log("Error fetching recommendation:", error))
+      }, [_id])
+
     const handleRecommendQueries = (e) =>{
         e.preventDefault()
         const form = e.target 
@@ -45,11 +49,12 @@ const Details = () => {
         const reUserEmail = userEmail
         const recommenderEmail = user.email
         const recommenderName = user.displayName
+        const UserImage = user.userImage
 
         const reCurrentDate = Date.now()
 
         const newReQueries = { queryId, reQueryTitle, reProductName, reUserEmail,recommenderEmail, recommenderName,
-          recommendationTitle, recommendationProductName,recommendationPhotoURL, recommendationReason, reCurrentDate,
+          recommendationTitle, recommendationProductName, UserImage, recommendationPhotoURL, recommendationReason, reCurrentDate,
         }
         fetch('http://localhost:5000/addRecommendation', {
           method: 'POST',
