@@ -1,82 +1,108 @@
 import React, { useContext, useEffect, useState } from "react";
-import { data, useLoaderData, useParams } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
 import ListRecommendation from "../../ListRecommendation/ListRecommendation";
 
 const Details = () => {
+  const { user } = useContext(AuthContext);
+  const [recommendation, setRecommendation] = useState([]);
+  const [recommendationCount, setRecommendationCount] = useState(0);
 
-  // const { email } = useParams()
-    const { user } = useContext(AuthContext)
-    console.log(user)
-    const [recommendation, setRecommendation] = useState([])
+  const {
+    _id,
+    productBrand,
+    userImage,
+    name,
+    PhotoURL,
+    queryTitle,
+    recommendationCount: initialRecommendationCount,
+    userEmail,
+    productName,
+    currentDate,
+    BoycottingReasonDetails,
+  } = useLoaderData();
 
-    
-    // console.log(recommendation)
+  // Initialize recommendation count
+  useEffect(() => {
+    setRecommendationCount(initialRecommendationCount);
+  }, [initialRecommendationCount]);
 
-    const {
-      _id,
-      productBrand,
-      userImage,
-      name,
-      PhotoURL,
-      queryTitle,
-      recommendationCount,
-      userEmail,
-      productName,
-      currentDate,
-      BoycottingReasonDetails,
-    } = useLoaderData();
-
-    useEffect(() =>{
-      fetch(`http://localhost:5000/addRecommendation/${_id}`)
+  // Fetch recommendations
+  useEffect(() => {
+    fetch(`http://localhost:5000/addRecommendation/${_id}`)
       .then((res) => res.json())
       .then((data) => setRecommendation(data))
-      .catch((error) => console.log("Error fetching recommendation:", error))
-      }, [_id])
+      .catch((error) => console.error("Error fetching recommendation:", error));
+  }, [_id]);
 
-    const handleRecommendQueries = (e) =>{
-        e.preventDefault()
-        const form = e.target 
-        const recommendationTitle = form.recommendationTitle.value
-        const recommendationProductName = form.recommendationProductName.value 
-        const recommendationPhotoURL = form.recommendationPhotoURL.value
-        const recommendationReason = form.recommendationReason.value
+  const handleRecommendQueries = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const recommendationTitle = form.recommendationTitle.value;
+    const recommendationProductName = form.recommendationProductName.value;
+    const recommendationPhotoURL = form.recommendationPhotoURL.value;
+    const recommendationReason = form.recommendationReason.value;
 
-        const queryId = _id
-        const reQueryTitle = queryTitle
-        const reProductName = productName
-        const reUserEmail = userEmail
-        const recommenderEmail = user.email
-        const recommenderName = user.displayName
-        const UserImage = user.userImage
+    const queryId = _id;
+    const newReQueries = {
+      queryId,
+      reQueryTitle: queryTitle,
+      reProductName: productName,
+      reUserEmail: userEmail,
+      recommenderEmail: user.email,
+      recommenderName: user.displayName,
+      UserImage: user.userImage,
+      recommendationTitle,
+      recommendationProductName,
+      recommendationPhotoURL,
+      recommendationReason,
+      reCurrentDate: Date.now(),
+    };
 
-        const reCurrentDate = Date.now()
+    // POST request to add the recommendation
+    fetch("http://localhost:5000/addRecommendation", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newReQueries),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.insertedId) {
+          // Increment recommendation count
+          fetch(`http://localhost:5000/incrementRecommendation/${queryId}`, {
+            method: "PUT",
+          })
+            .then((res) => res.json())
+            .then((response) => {
+              if (response.message === "Recommendation count update successful") {
+                setRecommendation((prev) => [
+                  ...prev,
+                  { ...newReQueries, _id: data.insertedId },
+                ]);
+                setRecommendationCount((prevCount) => prevCount + 1); // Update count in UI
 
-        const newReQueries = { queryId, reQueryTitle, reProductName, reUserEmail,recommenderEmail, recommenderName,
-          recommendationTitle, recommendationProductName, UserImage, recommendationPhotoURL, recommendationReason, reCurrentDate,
-        }
-        fetch('http://localhost:5000/addRecommendation', {
-          method: 'POST',
-          headers: { 'content-type' : 'application/json'},
-          body: JSON.stringify(newReQueries)
-        })
-        .then(res => res.json())
-        .then(data => {
-          console.log(data)
-        })
-        if(data.insertedId){
-          Swal.fire({
-              title: 'Success!',
-              text: 'Equipment Added Successfully',
-              icon: 'success',
-              confirmButtonText: 'Cool'
+                Swal.fire({
+                  title: "Success!",
+                  text: "Recommendation Added Successfully",
+                  icon: "success",
+                  confirmButtonText: "Cool",
+                });
+              } else {
+                console.error("Error updating recommendation count:", response.message);
+              }
             })
-      }
-      event.target.reset()
-    }
+            .catch((error) => {
+              console.error("Error updating recommendation count:", error);
+            });
+        }
+      })
+      .catch((error) => {
+        console.error("Error adding recommendation:", error);
+      });
 
-
+    form.reset();
+  };
 
   return (
     <div>
@@ -105,36 +131,21 @@ const Details = () => {
                 {productBrand}
                 <div className="badge badge-green-500 text-base">
                   {currentDate}
-                  {/* <FaStar></FaStar>
-                    <FaStar></FaStar>
-                    <FaStar></FaStar>
-                    <FaStar></FaStar>
-                    <FaStar></FaStar> */}
                 </div>
               </h2>
               <h1 className="card-title">
                 {productName}
-                <div className="badge badge-green-500">
-                  {recommendationCount}
-                </div>
+                <div className="badge badge-green-500">{recommendationCount}</div>
               </h1>
               <p className="py-6">{BoycottingReasonDetails}</p>
-              <div className="my-2 flex items-center gap-3">
-                Time: {currentDate}
-              </div>
-              {/* <p className="badge badge-green-500">
-                    STOCK : {StockStatus}
-                    </p> */}
+              <div className="my-2 flex items-center gap-3">Time: {currentDate}</div>
             </div>
-            <br />
           </div>
         </div>
       </div>
       {/* Recommendation section */}
       <div className="bg-green-200 p-4 sm:p-16">
-        <h2 className="sm:text-3xl font-semibold text-center py-5">
-          Add Queries
-        </h2>
+        <h2 className="sm:text-3xl font-semibold text-center py-5">Add Queries</h2>
         <form onSubmit={handleRecommendQueries}>
           <div className="md:flex">
             <div className="form-control md:w-1/2">
@@ -162,129 +173,53 @@ const Details = () => {
               />
             </div>
           </div>
-          {/* photo URL */}
           <div className="">
             <div className="form-control w-full">
               <label className="label">
                 <span className="label-text">Recommendation Photo URL</span>
               </label>
-              <label className="input-group">
-                <input
-                  type="url"
-                  name="recommendationPhotoURL"
-                  placeholder="Recommended Product Image"
-                  className="input input-bordered w-full"
-                />
-              </label>
+              <input
+                type="url"
+                name="recommendationPhotoURL"
+                placeholder="Recommended Product Image"
+                className="input input-bordered w-full"
+              />
             </div>
           </div>
-          {/* photo URL */}
           <div className="">
             <div className="form-control w-full">
               <label className="label">
                 <span className="label-text">Recommendation Reason</span>
               </label>
-              <label className="input-group">
-                <input
-                  type="text"
-                  name="recommendationReason"
-                  placeholder="Recommendation reason"
-                  className="input input-bordered w-full"
-                />
-              </label>
+              <input
+                type="text"
+                name="recommendationReason"
+                placeholder="Recommendation reason"
+                className="input input-bordered w-full"
+              />
             </div>
           </div>
-         
-          {/* email and user Name */}
-           {/* photo URL */}
-           {/* <div className="">
-            <div className="form-control w-full">
-              <label className="label">
-                <span className="label-text">Query Title</span>
-              </label>
-              <label className="input-group">
-                <input
-                  type="text"
-                  name="queryTitle"
-                  defaultValue={queryTitle}
-                  placeholder="queryTitle"
-                  className="input input-bordered w-full"
-                />
-              </label>
-            </div>
-          </div>
-           <div className="">
-            <div className="form-control w-full">
-              <label className="label">
-                <span className="label-text">Product Name</span>
-              </label>
-              <label className="input-group">
-                <input
-                  type="text"
-                  name="productName"
-                  defaultValue={productName}
-                  placeholder="Product Name"
-                  className="input input-bordered w-full"
-                />
-              </label>
-            </div>
-          </div>
-
-
-
-
-          <div className="md:flex">
-            <div className="form-control md:w-1/2">
-              <label className="label">
-                <span className="label-text">User Email</span>
-              </label>
-              <label className="input-group">
-                <input
-                  type="email"
-                  name="UserEmail"
-                  defaultValue={user && user.email}
-                  placeholder="User Email"
-                  className="input input-bordered w-full"
-                  disabled
-                />
-              </label>
-            </div>
-            <div className="form-control md:w-1/2">
-              <label className="label">
-                <span className="label-text">User Name</span>
-              </label>
-              <label className="input-group">
-                <input
-                  type="text"
-                  name="UserName"
-                  defaultValue={user && user.displayName}
-                  placeholder="User Name"
-                  className="input input-bordered w-full sm:ml-2"
-                  disabled
-                />
-              </label>
-            </div>
-          </div> */}
-
           <input
             type="submit"
             value="Add Recommendation"
             className="btn btn-block bg-green-500 my-3"
           />
         </form>
-
-        {/* recommendation section  */}
+        {/* Recommendation List */}
         <div>
           <ul>
-            {
-              recommendation.length > 0 ? (
-                recommendation.map((item) => (
-                  <ListRecommendation key={item._id} recommendation={recommendation} setRecommendation={setRecommendation} item={item}></ListRecommendation>
-                ))
-              ) : (
-                <p>No recommendation found for this user.</p>
-              )
-            }
+            {recommendation.length > 0 ? (
+              recommendation.map((item) => (
+                <ListRecommendation
+                  key={item._id}
+                  recommendation={recommendation}
+                  setRecommendation={setRecommendation}
+                  item={item}
+                />
+              ))
+            ) : (
+              <p>No recommendation found for this user.</p>
+            )}
           </ul>
         </div>
       </div>
