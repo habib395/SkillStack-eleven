@@ -1,42 +1,77 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import Swal from "sweetalert2";
+import ListRecommendation from "../../ListRecommendation/ListRecommendation";
 
 const Details = () => {
 
     const { user } = useContext(AuthContext)
+    const [recommendation, setRecommendation] = useState([])
 
-    const handleAddQueries = (e) =>{
+    useEffect(() =>{
+    fetch("http://localhost:5000/addRecommendation")
+    .then((res) => res.json())
+    .then((data) => setRecommendation(data))
+    .catch((error) => console.log("Error fetching recommendation:", error))
+    }, [])
+    console.log(recommendation)
+
+    const {
+      _id,
+      productBrand,
+      userImage,
+      name,
+      PhotoURL,
+      queryTitle,
+      recommendationCount,
+      userEmail,
+      productName,
+      currentDate,
+      BoycottingReasonDetails,
+    } = useLoaderData();
+
+    const handleRecommendQueries = (e) =>{
         e.preventDefault()
         const form = e.target 
-        const productName = form.productName.value 
-        const productBrand = form.productBrand.value
-        const PhotoURL = form.PhotoURL.value
-        const queryTitle = form.queryTitle.value
-        const BoycottingReasonDetails = form.BoycottingReasonDetails.value
-        const userEmail = user.email
-        const name = user.displayName
-        const userImage = user.photoURL
-        const currentDate = Date.now()
-        const recommendationCount = 0
+        const recommendationTitle = form.recommendationTitle.value
+        const recommendationProductName = form.recommendationProductName.value 
+        const recommendationPhotoURL = form.recommendationPhotoURL.value
+        const recommendationReason = form.recommendationReason.value
 
-        // console.log(productName, productBrand, PhotoURL, queryTitle, BoycottingReasonDetails)
-        const newQueries = {productName, productBrand, PhotoURL, queryTitle, BoycottingReasonDetails, userEmail, name, userImage, currentDate, recommendationCount}
-        console.log(newQueries)
+        const queryId = _id
+        const reQueryTitle = queryTitle
+        const reProductName = productName
+        const reUserEmail = userEmail
+        const recommenderEmail = user.email
+        const recommenderName = user.displayName
+
+        const reCurrentDate = Date.now()
+
+        const newReQueries = { queryId, reQueryTitle, reProductName, reUserEmail,recommenderEmail, recommenderName,
+          recommendationTitle, recommendationProductName,recommendationPhotoURL, recommendationReason, reCurrentDate,
+        }
+        fetch('http://localhost:5000/addRecommendation', {
+          method: 'POST',
+          headers: { 'content-type' : 'application/json'},
+          body: JSON.stringify(newReQueries)
+        })
+        .then(res => res.json())
+        .then(data => {
+          console.log(data)
+        })
+        if(data.insertedId){
+          Swal.fire({
+              title: 'Success!',
+              text: 'Equipment Added Successfully',
+              icon: 'success',
+              confirmButtonText: 'Cool'
+            })
+      }
+      event.target.reset()
     }
-  const {
-    productBrand,
-    userImage,
-    name,
-    PhotoURL,
-    queryTitle,
-    recommendationCount,
-    userEmail,
-    productName,
-    currentDate,
-    BoycottingReasonDetails,
-  } = useLoaderData();
-  //   console.log(userImage);
+
+
 
   return (
     <div>
@@ -95,28 +130,28 @@ const Details = () => {
         <h2 className="sm:text-3xl font-semibold text-center py-5">
           Add Queries
         </h2>
-        <form onSubmit={handleAddQueries}>
+        <form onSubmit={handleRecommendQueries}>
           <div className="md:flex">
             <div className="form-control md:w-1/2">
               <label className="label">
-                <span className="label-text">Product Name </span>
+                <span className="label-text">Recommendation Title</span>
               </label>
               <input
                 type="text"
-                name="productName"
-                placeholder="Product Name"
+                name="recommendationTitle"
+                placeholder="Recommended product Name"
                 className="input input-bordered"
                 required
               />
             </div>
             <div className="form-control md:w-1/2">
               <label className="label">
-                <span className="label-text">Product Brand</span>
+                <span className="label-text">Recommendation Product Name</span>
               </label>
               <input
                 type="text"
-                name="productBrand"
-                placeholder="Product Brand"
+                name="recommendationProductName"
+                placeholder="Recommendation Product Name"
                 className="input input-bordered"
                 required
               />
@@ -126,13 +161,13 @@ const Details = () => {
           <div className="">
             <div className="form-control w-full">
               <label className="label">
-                <span className="label-text">Photo URL</span>
+                <span className="label-text">Recommendation Photo URL</span>
               </label>
               <label className="input-group">
                 <input
                   type="url"
-                  name="PhotoURL"
-                  placeholder="Photo"
+                  name="recommendationPhotoURL"
+                  placeholder="Recommended Product Image"
                   className="input input-bordered w-full"
                 />
               </label>
@@ -140,6 +175,24 @@ const Details = () => {
           </div>
           {/* photo URL */}
           <div className="">
+            <div className="form-control w-full">
+              <label className="label">
+                <span className="label-text">Recommendation Reason</span>
+              </label>
+              <label className="input-group">
+                <input
+                  type="text"
+                  name="recommendationReason"
+                  placeholder="Recommendation reason"
+                  className="input input-bordered w-full"
+                />
+              </label>
+            </div>
+          </div>
+         
+          {/* email and user Name */}
+           {/* photo URL */}
+           {/* <div className="">
             <div className="form-control w-full">
               <label className="label">
                 <span className="label-text">Query Title</span>
@@ -148,29 +201,33 @@ const Details = () => {
                 <input
                   type="text"
                   name="queryTitle"
-                  placeholder="Query Title"
+                  defaultValue={queryTitle}
+                  placeholder="queryTitle"
                   className="input input-bordered w-full"
                 />
               </label>
             </div>
           </div>
-          {/* photo URL */}
-          <div className="">
+           <div className="">
             <div className="form-control w-full">
               <label className="label">
-                <span className="label-text">Boycotting Reason Details</span>
+                <span className="label-text">Product Name</span>
               </label>
               <label className="input-group">
                 <input
                   type="text"
-                  name="BoycottingReasonDetails"
-                  placeholder="ex: Is there any Better product that gives me the same quality?"
+                  name="productName"
+                  defaultValue={productName}
+                  placeholder="Product Name"
                   className="input input-bordered w-full"
                 />
               </label>
             </div>
           </div>
-          {/* email and user Name */}
+
+
+
+
           <div className="md:flex">
             <div className="form-control md:w-1/2">
               <label className="label">
@@ -202,13 +259,29 @@ const Details = () => {
                 />
               </label>
             </div>
-          </div>
+          </div> */}
+
           <input
             type="submit"
-            value="Add Query"
+            value="Add Recommendation"
             className="btn btn-block bg-green-500 my-3"
           />
         </form>
+
+        {/* recommendation section  */}
+        <div>
+          <ul>
+            {
+              recommendation.length > 0 ? (
+                recommendation.map((item) => (
+                  <ListRecommendation key={item._id} recommendation={recommendation} setRecommendation={setRecommendation} item={item}></ListRecommendation>
+                ))
+              ) : (
+                <p>No recommendation found for this user.</p>
+              )
+            }
+          </ul>
+        </div>
       </div>
     </div>
   );
