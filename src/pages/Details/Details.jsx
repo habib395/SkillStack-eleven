@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { NavLink, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
 import ListRecommendation from "../../ListRecommendation/ListRecommendation";
@@ -60,7 +60,6 @@ const Details = () => {
       reCurrentDate: Date.now(),
     };
 
-    // POST request to add the recommendation
     fetch("http://localhost:5000/addRecommendation", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -69,7 +68,6 @@ const Details = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.insertedId) {
-          // Increment recommendation count
           fetch(`http://localhost:5000/incrementRecommendation/${queryId}`, {
             method: "PUT",
           })
@@ -80,8 +78,7 @@ const Details = () => {
                   ...prev,
                   { ...newReQueries, _id: data.insertedId },
                 ]);
-                setRecommendationCount((prevCount) => prevCount + 1); // Update count in UI
-
+                setRecommendationCount((prevCount) => prevCount + 1); 
                 Swal.fire({
                   title: "Success!",
                   text: "Recommendation Added Successfully",
@@ -221,6 +218,11 @@ const Details = () => {
               <p>No recommendation found for this user.</p>
             )}
           </ul>
+        </div>
+        <div>
+        <NavLink to={'/AllRecommendation'}>
+        <h2 className="btn w-11/12 mx-auto text-center">All Recommendations</h2>
+        </NavLink>
         </div>
       </div>
     </div>

@@ -14,6 +14,7 @@ import PrivateRoutes from "../PrivateRoutes/PrivateRoutes";
 import ListQuery from "../pages/ListQueries/ListQuery";
 import Update from "../Update/Update";
 import Details from "../pages/Details/Details";
+import AllRecommendations from "../AllRecommendation/AllRecommendations";
 
 const router = createBrowserRouter([
   {
@@ -64,6 +65,11 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register></Register>,
+      },
+      {
+        path: '/allRecommendation',
+        element: <AllRecommendations></AllRecommendations>,
+        loader: () => fetch('http://localhost:5000/addRecommendation'),
       },
       {
         path: "/addQueries",
