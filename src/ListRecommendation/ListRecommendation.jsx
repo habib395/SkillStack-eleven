@@ -1,7 +1,7 @@
 import React from "react";
 
-const ListRecommendation = ({ item, recommendation, setRecommendation }) => {
-  // console.log(item);
+const ListRecommendation = ({ item, recommendationCount, setRecommendationCount }) => {
+  // console.log(recommendationCount);
   return (
     <div>
       <div key={item._id} className="grid gap-2 items-center w-10/12 mx-auto py-5">

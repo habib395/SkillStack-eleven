@@ -61,7 +61,8 @@ const router = createBrowserRouter([
       {
         path: "/myRecommendation",
         element: <MyRecommendation></MyRecommendation>,
-        loader: () => fetch('http://localhost:5000/myRecommendation/md.habiburrahmanjwd@gmail.com')
+        loader: ({ params }) => fetch(`http://localhost:5000/myRecommendation/${params.email}`)
+        // loader: () => fetch('http://localhost:5000/addRecommendation')
       },
       {
         path: "/register",

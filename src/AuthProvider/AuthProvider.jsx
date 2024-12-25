@@ -7,6 +7,8 @@ export const AuthContext = createContext()
 const AuthProvider = ({routes}) => {
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
+    
+    const [recommendationCount, setRecommendationCount] = useState(0);
 
     const handleRegister = (email, password)=>{
         setLoading(true)
@@ -37,7 +39,9 @@ const AuthProvider = ({routes}) => {
         handleLogin,
         handleLogOut,
         manageProfile,
-        updateUserProfile
+        updateUserProfile,
+        recommendationCount,
+        setRecommendationCount
     }
     useEffect(()=>{
         const unsubscribe = onAuthStateChanged(auth,
@@ -56,14 +60,11 @@ const AuthProvider = ({routes}) => {
 
     
     return (
-        <div>
             <AuthContext.Provider value={authInfo}>
                 {
                     routes
                 }
             </AuthContext.Provider>
-            
-        </div>
     );
 };
 

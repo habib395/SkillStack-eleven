@@ -1,35 +1,27 @@
-import React from "react";
-import { useLoaderData } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+
+import { AuthContext } from './../../AuthProvider/AuthProvider';
+import MtRecommendati from "./MtRecommendati";
 
 const AllRecommendations = () => {
-  const items = useLoaderData();
-  console.log(items);
+    const {user, setRecommendationCount} = useContext(AuthContext)
+    // console.log(setRecommendationCount)
+    const userEmail = user.user.email
+  const [items, setItems] = useState([]);
+//   console.log(user)
+
+  useEffect(()=> {
+    fetch(`http://localhost:5000/myRecommendation/${userEmail}`)
+    .then((res) => res.json())
+      .then((data) => setItems(data))
+      .catch((error) => console.error("Error fetching equipment:", error));
+  }, [userEmail])
   return (
     <>
       <div>
-        <h2>This is my Recommendation.</h2>
-        {items.map((item) => (
-          <div
-            key={item._id}
-            className="grid gap-2 items-center w-10/12 mx-auto py-5"
-          >
-            <div className="border-2 rounded-lg p-2">
-              <div className="flex items-center gap-2">
-                <figure>
-                  <img
-                    src={item.UserImage}
-                    className="w-12 h-12 rounded-full"
-                    alt={item.ItemName}
-                  />
-                </figure>
-                <h2>{item.recommenderName}</h2>
-              </div>
-              <p>{item.reCurrentDate}</p>
-              <div>
-                <p className="text-center p-2">{item.recommendationReason}</p>
-              </div>
-            </div>
-          </div>
+        <h2>This is my Recommendation</h2>
+        {items?.map((item, idx) => (
+         <MtRecommendati key={idx} item={item} items={items}></MtRecommendati>
         ))}
       </div>
     </>

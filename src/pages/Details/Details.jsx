@@ -5,9 +5,10 @@ import Swal from "sweetalert2";
 import ListRecommendation from "../../ListRecommendation/ListRecommendation";
 
 const Details = () => {
-  const { user } = useContext(AuthContext);
+  const { user, recommendationCount, setRecommendationCount } = useContext(AuthContext);
   const [recommendation, setRecommendation] = useState([]);
-  const [recommendationCount, setRecommendationCount] = useState(0);
+  // const [recommendationCount, setRecommendationCount] = useState(0);
+  // console.log(recommendationCount)
 
   const {
     _id,
@@ -22,6 +23,7 @@ const Details = () => {
     currentDate,
     BoycottingReasonDetails,
   } = useLoaderData();
+  // console.log(_id)
 
   // Initialize recommendation count
   useEffect(() => {
