@@ -4,7 +4,6 @@ import Home from "../pages/Home/Home";
 import { createBrowserRouter } from "react-router-dom";
 import Register from "../Register/Register";
 import Login from "../Login/Login";
-import Queries from "../pages/Home/Queries/Queries";
 import RecommendationMe from "../pages/RecommendationMe/recommendationMe";
 import MyQueries from "../pages/MyQueries/MyQueries";
 import MyRecommendation from "../pages/MyRecommendation/MyRecommendation";
@@ -15,6 +14,7 @@ import ListQuery from "../pages/ListQueries/ListQuery";
 import Update from "../Update/Update";
 import Details from "../pages/Details/Details";
 import AllRecommendations from "../AllRecommendation/AllRecommendations";
+import Queries from "../pages/Home/Queries/Queries";
 
 const router = createBrowserRouter([
   {
@@ -31,8 +31,8 @@ const router = createBrowserRouter([
         element: <Login></Login>,
       },
       {
-        path:"details/:id",
-        element:<Details></Details>,
+        path: "details/:id",
+        element: <Details></Details>,
         loader: async ({ params }) =>{
           const res = await fetch("http://localhost:5000/addQueries")
           const data = await res.json()
@@ -40,11 +40,6 @@ const router = createBrowserRouter([
           return singleData
         },
       },
-      // {
-      //   path: "/allQueries",
-      //   element:<AllQueries></AllQueries>,
-      //   loader: () => fetch("http://localhost:5000/addQueries"),
-      // },
       {
         path: "/forget",
         element: <Forget></Forget>,
@@ -59,40 +54,42 @@ const router = createBrowserRouter([
         element: <RecommendationMe></RecommendationMe>,
       },
       {
-        path: "/myRecommendation",
+        path: "/myRecommendation/:email",
         element: <MyRecommendation></MyRecommendation>,
-        loader: ({ params }) => fetch(`http://localhost:5000/myRecommendation/${params.email}`)
-        // loader: () => fetch('http://localhost:5000/addRecommendation')
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/myRecommendation/${params?.email}`),
       },
       {
         path: "/register",
         element: <Register></Register>,
       },
       {
-        path: '/allRecommendation',
+        path: "/allRecommendation",
         element: <AllRecommendations></AllRecommendations>,
-        loader: () => fetch('http://localhost:5000/addRecommendation'),
+        loader: () => fetch("http://localhost:5000/addRecommendation"),
       },
       {
         path: "/addQueries",
-        element: 
+        element: (
           <PrivateRoutes>
             <AddQueries></AddQueries>
           </PrivateRoutes>
+        ),
       },
       {
         path: "/queries/:email",
-        element: 
+        element: (
           <PrivateRoutes>
             <MyQueries></MyQueries>
           </PrivateRoutes>
+        ),
       },
-     {
-      path:"/update/:id",
-      element:<Update></Update>,
-      loader: ({ params }) =>
-        fetch(`http://localhost:5000/queries/${params.email}/${params.id}`),
-     },
+      {
+        path: "/update/:email/:id",
+        element: <Update></Update>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/queries/${params.email}/${params.id}`),
+      },
     ],
   },
 ]);
