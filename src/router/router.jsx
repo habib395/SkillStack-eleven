@@ -85,7 +85,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/update/:email/:id",
+        path: "/update/:id",
         element: <Update></Update>,
         loader: ({ params }) =>
           fetch(`http://localhost:5000/queries/${params.email}/${params.id}`),

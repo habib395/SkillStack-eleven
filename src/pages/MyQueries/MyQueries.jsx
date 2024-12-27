@@ -4,7 +4,7 @@ import ListQuery from "../ListQueries/ListQuery";
 
 const MyQueries = () => {
   const { email } = useParams()
-  // console.log(email)
+  console.log(email)
     const [queriesList, setQueriesList] = useState([])
 
     useEffect(() =>{

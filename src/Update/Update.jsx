@@ -14,11 +14,6 @@ const Update = () => {
     PhotoURL,
     queryTitle,
     BoycottingReasonDetails,
-    userEmail,
-    name,
-    userImage,
-    currentDate,
-    recommendationCount,
   } = item;
 
   const handleUpdateQueries = (e) => {
