@@ -5,10 +5,10 @@ import Swal from "sweetalert2";
 import ListRecommendation from "../../ListRecommendation/ListRecommendation";
 
 const Details = () => {
-  const { user, recommendationCount, setRecommendationCount } = useContext(AuthContext);
-  const [recommendation, setRecommendation] = useState([]);
+  const { user, recommendationCount, setRecommendationCount, recommendation, setRecommendation } = useContext(AuthContext);
+  // const [recommendation, setRecommendation] = useState([]);
   // const [recommendationCount, setRecommendationCount] = useState(0);
-  // console.log(recommendationCount)
+  console.log(recommendationCount)
 
   const currentDate = Date.now();
     const options = {

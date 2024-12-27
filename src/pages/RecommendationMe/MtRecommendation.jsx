@@ -19,9 +19,9 @@ const MtRecommendation = ({ item }) => {
             <h2>{item.reProductName}</h2>
           <p>{item.reCurrentDate}</p>
           </div>
-          <div>
+          {/* <div>
             <button onClick={() => handleDelete(_id)} className="btn bg-green-500">X</button>
-          </div>
+          </div> */}
           </div>
           <div>
             <p className="text-center p-2">{item.recommendationReason}</p>

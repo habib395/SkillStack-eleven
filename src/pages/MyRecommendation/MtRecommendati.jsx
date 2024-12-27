@@ -1,10 +1,20 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import Swal from 'sweetalert2';
+import { AuthContext } from '../../AuthProvider/AuthProvider';
 
 const MtRecommendati = ({ item }) => {
+   const { recommendationCount, setRecommendationCount, recommendation, setRecommendation } = useContext(AuthContext);
+   console.log(recommendationCount)
     
     // console.log(item)
     const { _id } = item
+
+    // console.log(_id)
+  
+    // Initialize recommendation count
+    useEffect(() => {
+      setRecommendationCount(recommendationCount);
+    }, [recommendationCount]);
 
     const handleDelete = (_id) =>{
         Swal.fire({
@@ -22,16 +32,33 @@ const MtRecommendati = ({ item }) => {
                 })
                 .then((res) => res.json())
                 .then((data) => {
-                    console.log(data)
-                    if (data.deletedCount > 0) {
-                        Swal.fire({
-                          title: "Deleted!",
-                          text: "Your file has been deleted.",
-                          icon: "success",
-                        });
-                        const remaining = item.filter(equ => equ._id !== _id)
-                        setEquipmentList(remaining);
-                      }
+                  console.log(data)
+                  //  if (data.insertedId) {
+                  //           fetch(`http://localhost:5000/decreaseRecommendation/${queryId}`, {
+                  //             method: "PUT",
+                  //           })
+                  //             .then((res) => res.json())
+                  //             .then((response) => {
+                  //               if (response.message === "Recommendation count update successful") {
+                  //                 setRecommendation((prev) => [
+                  //                   ...prev,
+                  //                   { ...newReQueries, _id: data.insertedId },
+                  //                 ]);
+                  //                 setRecommendationCount((prevCount) => prevCount - 1); 
+                  //                 Swal.fire({
+                  //                   title: "Success!",
+                  //                   text: "Recommendation Added Successfully",
+                  //                   icon: "success",
+                  //                   confirmButtonText: "Cool",
+                  //                 });
+                  //               } else {
+                  //                 console.error("Error updating recommendation count:", response.message);
+                  //               }
+                  //             })
+                  //             .catch((error) => {
+                  //               console.error("Error updating recommendation count:", error);
+                  //             });
+                  //         }
                 })
             }
           })
@@ -60,6 +87,7 @@ const MtRecommendati = ({ item }) => {
           </div>
           <div>
             <p className="text-center p-2">{item.recommendationReason}</p>
+            <p className="p-2">{item.reProductName}</p>
           </div>
         </div>
       </div>
