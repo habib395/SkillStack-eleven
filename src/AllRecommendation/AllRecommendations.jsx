@@ -3,7 +3,7 @@ import { useLoaderData } from "react-router-dom";
 
 const AllRecommendations = () => {
   const items = useLoaderData();
-  console.log(items);
+  // console.log(items);
   return (
     <>
       <div>
@@ -24,7 +24,7 @@ const AllRecommendations = () => {
                 </figure>
                 <h2>{item.recommenderName}</h2>
               </div>
-              <p>{item.reCurrentDate}</p>
+              <p>{item.readableDate}</p>
               <div>
                 <p className="text-center p-2">{item.recommendationReason}</p>
               </div>

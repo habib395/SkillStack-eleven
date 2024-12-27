@@ -10,6 +10,18 @@ const Details = () => {
   // const [recommendationCount, setRecommendationCount] = useState(0);
   // console.log(recommendationCount)
 
+  const currentDate = Date.now();
+    const options = {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+    };
+    const readableDate = new Intl.DateTimeFormat("en-US", options).format(
+      currentDate
+    );
   const {
     _id,
     productBrand,
@@ -20,7 +32,6 @@ const Details = () => {
     recommendationCount: initialRecommendationCount,
     userEmail,
     productName,
-    currentDate,
     BoycottingReasonDetails,
   } = useLoaderData();
   // console.log(_id)
@@ -59,7 +70,7 @@ const Details = () => {
       recommendationProductName,
       recommendationPhotoURL,
       recommendationReason,
-      reCurrentDate: Date.now(),
+      readableDate
     };
 
     fetch("http://localhost:5000/addRecommendation", {
@@ -129,7 +140,7 @@ const Details = () => {
               <h2 className="card-title text-3xl my-4">
                 {productBrand}
                 <div className="badge badge-green-500 text-base">
-                  {currentDate}
+                  {readableDate}
                 </div>
               </h2>
               <h1 className="card-title">
@@ -137,7 +148,7 @@ const Details = () => {
                 <div className="badge badge-green-500">{recommendationCount}</div>
               </h1>
               <p className="py-6">{BoycottingReasonDetails}</p>
-              <div className="my-2 flex items-center gap-3">Time: {currentDate}</div>
+              <div className="my-2 flex items-center gap-3">Time: {readableDate}</div>
             </div>
           </div>
         </div>
