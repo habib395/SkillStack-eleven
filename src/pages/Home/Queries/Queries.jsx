@@ -28,7 +28,11 @@ const Queries = () => {
         import.meta.env.VITE_API_URL
       }/addQueries?search=${search || ''}`
       )
-      setProducts(data)
+      // {console.log(data)}
+      // const sortedProducts = data.sort(
+      //   (a, b) => new Date(b.readableDate) - new Date(a.readableDate)
+      // )
+      // setProducts(data)
     }catch(error){
       console.error("Error fetching search queries:", error)
     }
