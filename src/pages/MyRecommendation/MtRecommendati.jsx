@@ -10,7 +10,7 @@ const MtRecommendati = ({ item }) => {
     recommendation,
     setRecommendation,
   } = useContext(AuthContext);
-  console.log(recommendationCount);
+  // console.log(recommendationCount);
 
   // console.log(item)
   const { _id } = item;
@@ -33,13 +33,6 @@ const MtRecommendati = ({ item }) => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        // fetch(`http://localhost:5000/myRecommendation/${_id}`,{
-        //     method: "DELETE",
-        // })
-        // .then((res) => res.json())
-        // .then((data) => {
-        //   console.log(data)
-        // })
         axios
           .delete(`http://localhost:5000/myRecommendation/${_id}`)
           .then((response) => {

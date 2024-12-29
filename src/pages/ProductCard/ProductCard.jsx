@@ -15,12 +15,6 @@ const ProductCard = ({ product }) => {
         <div className="card-body sm:p-3 items-center text-center">
           <h2 className="card-title text-green-700">{productName}
           </h2>
-          {/* <p className="text-green-700">{Description}</p> */}
-          
-            {/* <NavLink to={`/details/${_id}`}> */}
-            <button className="btn btn-success">View Details</button>
-            {/* </NavLink> */}
-        
         </div>
       </div>
     );

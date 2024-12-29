@@ -13,9 +13,11 @@ const { _id, productBrand, recommendationCount} = product
         />
       </figure>
       <div className="card-body">
-        <h2 className="card-title">{productBrand}<div className="badge badge-secondary">{recommendationCount}</div></h2>
+        <h2 className="">{productBrand}
+          </h2>
+          <div className="badge badge-secondary">{recommendationCount}</div>
         <NavLink to={`/details/${_id}`}>
-        <button className="btn btn-primary">Recommend Button</button>
+        <button className="btn text-xs text-black w-full">Recommend</button>
         </NavLink>       
       </div>
     </div>

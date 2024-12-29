@@ -45,13 +45,9 @@ const Home = () => {
                 />
               </figure>
               <div className="card-body">
-                <h2 className="card-title">Professional Football</h2>
+                <h2 className="card-title">Milk Powder</h2>
                 <p>
-                  "As a professional player, I've tried countless footballs, but
-                  this one truly stands out. The grip, bounce, and durability
-                  are unmatched. It's perfect for every game, whether on grass
-                  or turf. Highly recommended for anyone serious about
-                  football!"
+                "While Dano offers great nutritional value, its price is significantly higher than other milk powders available in the market. I wish it was more affordable for regular use."
                 </p>
                 <p className="text-base font-bold">
                   Michael J., Pro Footballer
@@ -68,12 +64,9 @@ const Home = () => {
               />
             </figure>
             <div className="card-body">
-              <h2 className="card-title">Basketball Elite</h2>
+              <h2 className="card-title">Cooking Oil</h2>
               <p>
-                This basketball changed the game for me. The premium leather
-                finish and perfect weight make it a joy to play with. It's like
-                it was crafted for perfection. Thank you for offering such a
-                top-notch product!"
+              "Rupchanda cooking oil is of good quality, but I noticed that it gets rancid too quickly after opening. It would be great if the shelf life was a bit longer."
               </p>
               <p className="text-base font-bold">
                 Liam H., Basketball Enthusiast
@@ -89,12 +82,9 @@ const Home = () => {
                 />
               </figure>
               <div className="card-body">
-                <h2 className="card-title">Soccer Cleats</h2>
+                <h2 className="card-title">Detergent Powder </h2>
                 <p>
-                  "These cleats are a game-changer! They're so light, I feel
-                  like I'm flying across the field. Plus, the customization
-                  option allowed me to make them truly mine. Best investment for
-                  any soccer lover!"
+                  "Surf Excel works well, but the strong scent is a bit overwhelming and causes irritation. I'd prefer a more natural alternative with less harsh chemicals"
                 </p>
                 <p className="text-base font-bold">Emma P., Soccer Coach</p>
               </div>
@@ -108,12 +98,9 @@ const Home = () => {
               />
             </figure>
             <div className="card-body">
-              <h2 className="card-title">Team Jersey</h2>
+              <h2 className="card-title">Soap</h2>
               <p>
-                "Our team looks and feels incredible in these jerseys! The
-                breathable material and professional finish make every game a
-                stylish and comfortable experience. The custom prints were
-                flawless, and delivery was on time!"
+              "Lux soap smells great, but it tends to dry out my skin, especially during the winter months. I'm looking for a soap that offers more moisture and lasts longer."
               </p>
               <p className="text-base font-bold">Ryan T., Team Captain</p>
             </div>
@@ -127,12 +114,9 @@ const Home = () => {
                 />
               </figure>
               <div className="card-body">
-                <h2 className="card-title">Tennis Racket Pro</h2>
+                <h2 className="card-title">Noodles </h2>
                 <p>
-                  "This racket has elevated my game to the next level. The
-                  balance, power, and control are perfect for both practice and
-                  tournaments. It's clear a lot of thought went into its design.
-                  A must-have for any serious tennis player!"
+                "Maggi noodles are tasty, but the high sodium content concerns me. I wish there were healthier versions with less artificial flavoring and a more balanced nutritional profile."
                 </p>
                 <p className="text-base font-bold">
                   Sophia L., Tennis Champion

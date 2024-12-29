@@ -10,14 +10,7 @@ const AllRecommendations = () => {
   const [items, setItems] = useState([]);
 //   console.log()
 
-  // useEffect(()=> {
-  //  if(userEmail){
-  //   fetch(`http://localhost:5000/myRecommendation/${userEmail}`)
-  //   .then((res) => res.json())
-  //     .then((data) => setItems(data))
-  //     .catch((error) => console.error("Error fetching equipment:", error));
-  //  }
-  // }, [userEmail])
+
   useEffect(() => {
     if (userEmail) {
         axios

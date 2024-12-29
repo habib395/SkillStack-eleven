@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
-import axios from "axios";
 
 const AddQueries = () => {
   const { user } = useContext(AuthContext);

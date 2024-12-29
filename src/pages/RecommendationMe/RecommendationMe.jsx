@@ -10,14 +10,6 @@ const RecommendationMe = () => {
 
   const [queriesList, setQueriesList] = useState([]);
 
-  // useEffect(() => {
-  //   if (userEmail) {
-  //     fetch(`http://localhost:5000/myRecommendation/${userEmail}`)
-  //       .then((res) => res.json())
-  //       .then((data) => setQueriesList(data))
-  //       .catch((error) => console.error("Error fetching queries:", error));
-  //   }
-  // }, [userEmail]);
   useEffect(() => {
     if (userEmail) {
         axios
@@ -34,7 +26,6 @@ const RecommendationMe = () => {
 
   return (
     <div>
-      <h2>This is my Recommendation</h2>
       <div>
         {Array.isArray(items) &&
           items

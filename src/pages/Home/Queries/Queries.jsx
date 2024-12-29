@@ -48,7 +48,7 @@ const Queries = () => {
       <h1 className="text-2xl font-bold mb-4 text-center text-green-400">
         SPORT EQUIPMENT
       </h1>
-      <div className="flex justify-center mb-6 gap-4">
+      <div className="sm:flex items-center justify-center sm:mb-6 gap-4">
         <button onClick={handleGrid1} className="btn bg-green-500">
           1 Column
         </button>
@@ -58,10 +58,7 @@ const Queries = () => {
         <button onClick={handleGrid3} className="btn bg-green-500">
           3 Column
         </button>
-        {/* <div>
-      <input type="text" name="search" className="px-6 py-2" placeholder="Product Name"  />
-      <button className="btn">Search</button>
-      </div> */}
+        
         <div className="flex">
           <input
             className="input input-bordered"

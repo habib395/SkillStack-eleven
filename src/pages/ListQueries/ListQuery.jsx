@@ -1,7 +1,6 @@
-import axios from "axios";
 import React from "react";
 // import { Slide } from 'react-awesome-reveal';
-import { Link, useParams } from "react-router-dom";
+import { Link, NavLink, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const ListQuery = ({ item, queriesList, setQueriesList }) => {
@@ -72,6 +71,9 @@ const ListQuery = ({ item, queriesList, setQueriesList }) => {
             </div>
             <div className="card-actions justify-end">
               <div className="join join-vertical space-y-4">
+              <NavLink to={`/details/${_id}`}>
+                  <button className="btn join-item bg-green-500">Details</button>
+                </NavLink>
                 <Link to={`/update/${_id}`}>
                   <button className="btn join-item bg-green-500">Update</button>
                 </Link>

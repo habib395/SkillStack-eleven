@@ -13,9 +13,7 @@ const Details = () => {
     recommendation,
     setRecommendation,
   } = useContext(AuthContext);
-  // const [recommendation, setRecommendation] = useState([]);
-  // const [recommendationCount, setRecommendationCount] = useState(0);
-  console.log(recommendationCount);
+  
 
   const currentDate = Date.now();
   const options = {
@@ -42,19 +40,11 @@ const Details = () => {
     BoycottingReasonDetails,
   } = useLoaderData();
   // console.log(_id)
-
-  // Initialize recommendation count
   useEffect(() => {
     setRecommendationCount(initialRecommendationCount);
   }, [initialRecommendationCount]);
 
-  // Fetch recommendations
-  // useEffect(() => {
-  //   fetch(`http://localhost:5000/addRecommendation/${_id}`)
-  //     .then((res) => res.json())
-  //     .then((data) => setRecommendation(data))
-  //     .catch((error) => console.error("Error fetching recommendation:", error));
-  // }, [_id]);
+
   useEffect(() => {
     axios
         .get(`http://localhost:5000/addRecommendation/${_id}`)
@@ -86,44 +76,6 @@ const Details = () => {
       recommendationReason,
       readableDate,
     };
-
-    // fetch("http://localhost:5000/addRecommendation", {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify(newReQueries),
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     if (data.insertedId) {
-    //       fetch(`http://localhost:5000/incrementRecommendation/${queryId}`, {
-    //         method: "PUT",
-    //       })
-    //         .then((res) => res.json())
-    //         .then((response) => {
-    //           if (response.message === "Recommendation count update successful") {
-    //             setRecommendation((prev) => [
-    //               ...prev,
-    //               { ...newReQueries, _id: data.insertedId },
-    //             ]);
-    //             setRecommendationCount((prevCount) => prevCount + 1);
-    //             Swal.fire({
-    //               title: "Success!",
-    //               text: "Recommendation Added Successfully",
-    //               icon: "success",
-    //               confirmButtonText: "Cool",
-    //             });
-    //           } else {
-    //             console.error("Error updating recommendation count:", response.message);
-    //           }
-    //         })
-    //         .catch((error) => {
-    //           console.error("Error updating recommendation count:", error);
-    //         });
-    //     }
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error adding recommendation:", error);
-    //   });
 
     axios
       .post("http://localhost:5000/addRecommendation", newReQueries, {
@@ -196,9 +148,9 @@ const Details = () => {
               </h2>
             </div>
             <div>
-              <h2 className="card-title text-3xl my-4">
+              <h2 className="card-title text-xl my-4">
                 {productBrand}
-                <div className="badge badge-green-500 text-base">
+                <div className="badge badge-green-500 text-xm">
                   {readableDate}
                 </div>
               </h2>
