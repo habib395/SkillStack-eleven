@@ -32,7 +32,7 @@ const Queries = () => {
       // const sortedProducts = data.sort(
       //   (a, b) => new Date(b.readableDate) - new Date(a.readableDate)
       // )
-      // setProducts(data)
+      setProducts(data)
     }catch(error){
       console.error("Error fetching search queries:", error)
     }

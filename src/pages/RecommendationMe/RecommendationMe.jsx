@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import { useLoaderData } from 'react-router-dom';
+import axios from 'axios';
 
 const RecommendationMe = () => {
   const items = useLoaderData();
@@ -9,14 +10,23 @@ const RecommendationMe = () => {
 
   const [queriesList, setQueriesList] = useState([]);
 
+  // useEffect(() => {
+  //   if (userEmail) {
+  //     fetch(`http://localhost:5000/myRecommendation/${userEmail}`)
+  //       .then((res) => res.json())
+  //       .then((data) => setQueriesList(data))
+  //       .catch((error) => console.error("Error fetching queries:", error));
+  //   }
+  // }, [userEmail]);
   useEffect(() => {
     if (userEmail) {
-      fetch(`http://localhost:5000/myRecommendation/${userEmail}`)
-        .then((res) => res.json())
-        .then((data) => setQueriesList(data))
-        .catch((error) => console.error("Error fetching queries:", error));
+        axios
+            .get(`http://localhost:5000/myRecommendation/${userEmail}`)
+            .then((response) => setQueriesList(response.data))
+            .catch((error) => console.error("Error fetching queries:", error));
     }
-  }, [userEmail]);
+}, [userEmail]);
+
 
   if (!items) {
     return <p>Loading...</p>;

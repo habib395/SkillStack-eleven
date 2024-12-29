@@ -2,10 +2,11 @@ import React, { useContext } from "react";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 const Update = () => {
   const { user } = useContext(AuthContext);
-  const item = useLoaderData()
+  const item = useLoaderData();
 
   const {
     _id,
@@ -14,6 +15,11 @@ const Update = () => {
     PhotoURL,
     queryTitle,
     BoycottingReasonDetails,
+    userEmail,
+    name,
+    userImage,
+    currentDate,
+    recommendationCount,
   } = item;
 
   const handleUpdateQueries = (e) => {
@@ -44,27 +50,49 @@ const Update = () => {
       recommendationCount,
     };
     // console.log(newQueries);
-    fetch(`http://localhost:5000/queries/${_id}`,{
-        method: 'PUT',
-        headers:{
-            "content-type" : 'application/json',
+    // fetch(`http://localhost:5000/queries/${_id}`,{
+    //     method: 'PUT',
+    //     headers:{
+    //         "content-type" : 'application/json',
+    //     },
+    //     body: JSON.stringify(newQueries),
+    // })
+    // .then((res) => res.json())
+    // .then((data) =>{
+    //     console.log(data)
+    //     if (data.modifiedCount > 0) {
+    //         Swal.fire({
+    //           title: "Success!",
+    //           text: "Queries Updated Successfully",
+    //           icon: "success",
+    //           confirmButtonText: "Cool",
+    //         });
+    //       }
+    // })
+    // event.target.reset()
+    axios
+      .put(`http://localhost:5000/queries/${_id}`, newQueries, {
+        headers: {
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(newQueries),
-    })
-    .then((res) => res.json())
-    .then((data) =>{
-        console.log(data)
+      })
+      .then((response) => {
+        const data = response.data;
+        console.log(data);
         if (data.modifiedCount > 0) {
-            Swal.fire({
-              title: "Success!",
-              text: "Queries Updated Successfully",
-              icon: "success",
-              confirmButtonText: "Cool",
-            });
-          }
-    })
-    event.target.reset()
+          Swal.fire({
+            title: "Success!",
+            text: "Queries Updated Successfully",
+            icon: "success",
+            confirmButtonText: "Cool",
+          });
+        }
+      })
+      .catch((error) => {
+        console.error("Error updating queries:", error);
+      });
 
+    event.target.reset();
   };
   return (
     <div className="bg-green-200 p-4 sm:p-16">

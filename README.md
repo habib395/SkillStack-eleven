@@ -1,8 +1,22 @@
-# React + Vite
+# Website Name: SkillStack
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Purpose: 
+The website helps users find and share product recommendations, ask questions about products, and manage their queries, recommendations, and comments easily.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# live URL: 
+
+# key features:
+--Responsive Design
+--Reusability with Components
+--Dynamic Product Rendering
+--Search Functionality
+--Customizable Grid Layout
+--Reusable Query Component
+--Dynamic Data Fetching
+
+# npm packages: 
+--Swiper
+--Axios
+--React Awesome Reveal
+--dotenv

@@ -1,18 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import ListQuery from "../ListQueries/ListQuery";
+import axios from "axios";
 
 const MyQueries = () => {
   const { email } = useParams()
   // console.log(email)
     const [queriesList, setQueriesList] = useState([])
 
-    useEffect(() =>{
-            fetch(`http://localhost:5000/queries/${email}`)
-            .then((res) => res.json())
-            .then((data) => setQueriesList(data))
-            .catch((error) => console.error("Error fetching queries:", error))
-        }, [email])
+    // useEffect(() =>{
+    //         fetch(`http://localhost:5000/queries/${email}`)
+    //         .then((res) => res.json())
+    //         .then((data) => setQueriesList(data))
+    //         .catch((error) => console.error("Error fetching queries:", error))
+    //     }, [email])
+    useEffect(() => {
+      axios
+          .get(`http://localhost:5000/queries/${email}`)
+          .then((response) => setQueriesList(response.data))
+          .catch((error) => console.error("Error fetching queries:", error));
+  }, [email]);
+  
   return (
     <div>
       {/* Add Query Banner section */}

@@ -3,25 +3,32 @@ import { NavLink, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
 import ListRecommendation from "../../ListRecommendation/ListRecommendation";
+import axios from "axios";
 
 const Details = () => {
-  const { user, recommendationCount, setRecommendationCount, recommendation, setRecommendation } = useContext(AuthContext);
+  const {
+    user,
+    recommendationCount,
+    setRecommendationCount,
+    recommendation,
+    setRecommendation,
+  } = useContext(AuthContext);
   // const [recommendation, setRecommendation] = useState([]);
   // const [recommendationCount, setRecommendationCount] = useState(0);
-  console.log(recommendationCount)
+  console.log(recommendationCount);
 
   const currentDate = Date.now();
-    const options = {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-      second: "2-digit",
-    };
-    const readableDate = new Intl.DateTimeFormat("en-US", options).format(
-      currentDate
-    );
+  const options = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+  };
+  const readableDate = new Intl.DateTimeFormat("en-US", options).format(
+    currentDate
+  );
   const {
     _id,
     productBrand,
@@ -42,12 +49,19 @@ const Details = () => {
   }, [initialRecommendationCount]);
 
   // Fetch recommendations
+  // useEffect(() => {
+  //   fetch(`http://localhost:5000/addRecommendation/${_id}`)
+  //     .then((res) => res.json())
+  //     .then((data) => setRecommendation(data))
+  //     .catch((error) => console.error("Error fetching recommendation:", error));
+  // }, [_id]);
   useEffect(() => {
-    fetch(`http://localhost:5000/addRecommendation/${_id}`)
-      .then((res) => res.json())
-      .then((data) => setRecommendation(data))
-      .catch((error) => console.error("Error fetching recommendation:", error));
-  }, [_id]);
+    axios
+        .get(`http://localhost:5000/addRecommendation/${_id}`)
+        .then((response) => setRecommendation(response.data))
+        .catch((error) => console.error("Error fetching recommendation:", error));
+}, [_id]);
+
 
   const handleRecommendQueries = (e) => {
     e.preventDefault();
@@ -70,28 +84,70 @@ const Details = () => {
       recommendationProductName,
       recommendationPhotoURL,
       recommendationReason,
-      readableDate
+      readableDate,
     };
 
-    fetch("http://localhost:5000/addRecommendation", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newReQueries),
-    })
-      .then((res) => res.json())
-      .then((data) => {
+    // fetch("http://localhost:5000/addRecommendation", {
+    //   method: "POST",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify(newReQueries),
+    // })
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     if (data.insertedId) {
+    //       fetch(`http://localhost:5000/incrementRecommendation/${queryId}`, {
+    //         method: "PUT",
+    //       })
+    //         .then((res) => res.json())
+    //         .then((response) => {
+    //           if (response.message === "Recommendation count update successful") {
+    //             setRecommendation((prev) => [
+    //               ...prev,
+    //               { ...newReQueries, _id: data.insertedId },
+    //             ]);
+    //             setRecommendationCount((prevCount) => prevCount + 1);
+    //             Swal.fire({
+    //               title: "Success!",
+    //               text: "Recommendation Added Successfully",
+    //               icon: "success",
+    //               confirmButtonText: "Cool",
+    //             });
+    //           } else {
+    //             console.error("Error updating recommendation count:", response.message);
+    //           }
+    //         })
+    //         .catch((error) => {
+    //           console.error("Error updating recommendation count:", error);
+    //         });
+    //     }
+    //   })
+    //   .catch((error) => {
+    //     console.error("Error adding recommendation:", error);
+    //   });
+
+    axios
+      .post("http://localhost:5000/addRecommendation", newReQueries, {
+        headers: { "Content-Type": "application/json" },
+      })
+      .then((postResponse) => {
+        const data = postResponse.data;
         if (data.insertedId) {
-          fetch(`http://localhost:5000/incrementRecommendation/${queryId}`, {
-            method: "PUT",
-          })
-            .then((res) => res.json())
-            .then((response) => {
-              if (response.message === "Recommendation count update successful") {
+          // Recommendation successfully added, now increment recommendation count
+          axios
+            .put(`http://localhost:5000/incrementRecommendation/${queryId}`)
+            .then((putResponse) => {
+              const response = putResponse.data;
+              if (
+                response.message === "Recommendation count update successful"
+              ) {
+                // Update state after successful increment
                 setRecommendation((prev) => [
                   ...prev,
                   { ...newReQueries, _id: data.insertedId },
                 ]);
-                setRecommendationCount((prevCount) => prevCount + 1); 
+                setRecommendationCount((prevCount) => prevCount + 1);
+
+                // Show success message
                 Swal.fire({
                   title: "Success!",
                   text: "Recommendation Added Successfully",
@@ -99,7 +155,10 @@ const Details = () => {
                   confirmButtonText: "Cool",
                 });
               } else {
-                console.error("Error updating recommendation count:", response.message);
+                console.error(
+                  "Error updating recommendation count:",
+                  response.message
+                );
               }
             })
             .catch((error) => {
@@ -145,17 +204,23 @@ const Details = () => {
               </h2>
               <h1 className="card-title">
                 {productName}
-                <div className="badge badge-green-500">{recommendationCount}</div>
+                <div className="badge badge-green-500">
+                  {recommendationCount}
+                </div>
               </h1>
               <p className="py-6">{BoycottingReasonDetails}</p>
-              <div className="my-2 flex items-center gap-3">Time: {readableDate}</div>
+              <div className="my-2 flex items-center gap-3">
+                Time: {readableDate}
+              </div>
             </div>
           </div>
         </div>
       </div>
       {/* Recommendation section */}
       <div className="bg-green-200 p-4 sm:p-16">
-        <h2 className="sm:text-3xl font-semibold text-center py-5">Add Queries</h2>
+        <h2 className="sm:text-3xl font-semibold text-center py-5">
+          Add Queries
+        </h2>
         <form onSubmit={handleRecommendQueries}>
           <div className="md:flex">
             <div className="form-control md:w-1/2">
@@ -233,9 +298,11 @@ const Details = () => {
           </ul>
         </div>
         <div>
-        <NavLink to={'/AllRecommendation'}>
-        <h2 className="btn w-11/12 mx-auto text-center">All Recommendations</h2>
-        </NavLink>
+          <NavLink to={"/AllRecommendation"}>
+            <h2 className="btn w-11/12 mx-auto text-center">
+              All Recommendations
+            </h2>
+          </NavLink>
         </div>
       </div>
     </div>

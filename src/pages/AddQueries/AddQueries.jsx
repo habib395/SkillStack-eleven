@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 const AddQueries = () => {
   const { user } = useContext(AuthContext);
@@ -48,26 +49,50 @@ const AddQueries = () => {
     };
     console.log(newQueries);
 
-    fetch("http://localhost:5000/addQueries", {
-      method: "POST",
+    // fetch("http://localhost:5000/addQueries", {
+    //   method: "POST",
+    //   headers: {
+    //     "content-type": "application/json",
+    //   },
+    //   body: JSON.stringify(newQueries),
+    // })
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     console.log(data);
+    //     if (data.insertedId) {
+    //       Swal.fire({
+    //         title: "Success!",
+    //         text: "Equipment Added Successfully",
+    //         icon: "success",
+    //         confirmButtonText: "Cool",
+    //       });
+    //     }
+    //   });
+    // event.target.reset();
+
+    axios.post("http://localhost:5000/addQueries", newQueries, {
       headers: {
-        "content-type": "application/json",
+          "Content-Type": "application/json",
       },
-      body: JSON.stringify(newQueries),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        if (data.insertedId) {
+  })
+  .then((response) => {
+      const data = response.data;
+      console.log(data);
+      if (data.insertedId) {
           Swal.fire({
-            title: "Success!",
-            text: "Equipment Added Successfully",
-            icon: "success",
-            confirmButtonText: "Cool",
+              title: "Success!",
+              text: "Equipment Added Successfully",
+              icon: "success",
+              confirmButtonText: "Cool",
           });
-        }
-      });
-    event.target.reset();
+      }
+  })
+  .catch((error) => {
+      console.error("Error adding equipment:", error);
+  });
+  
+  event.target.reset();
+
   };
   return (
     <div className="bg-green-200 p-4 sm:p-16">
