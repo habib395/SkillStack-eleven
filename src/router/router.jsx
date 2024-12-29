@@ -26,7 +26,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        loader: () => axios.get("http://localhost:5000/addQuery").then((response) => response.data),
+        loader: () => axios.get("https://recommendation-eleven-ph.vercel.app/addQuery").then((response) => response.data),
       },
       {
         path: "/login",
@@ -36,7 +36,7 @@ const router = createBrowserRouter([
         path: "details/:id",
         element: <Details></Details>,
         loader: async ({ params }) => {
-          const response = await axios.get("http://localhost:5000/addQueries");
+          const response = await axios.get("https://recommendation-eleven-ph.vercel.app/addQueries");
           const data = response.data;
           const singleData = data.find((d) => d._id == params.id);
           return singleData;
@@ -49,18 +49,18 @@ const router = createBrowserRouter([
       {
         path: "/queries",
         element: <Queries></Queries>,
-        loader: () => axios.get("http://localhost:5000/addQueries").then((response) => response.data),
+        loader: () => axios.get("https://recommendation-eleven-ph.vercel.app/addQueries").then((response) => response.data),
       },
       {
         path: "/recommendation_me",
         element: <RecommendationMe></RecommendationMe>,
-        loader: () => axios.get("http://localhost:5000/addRecommendation").then((response) => response.data),
+        loader: () => axios.get("https://recommendation-eleven-ph.vercel.app/addRecommendation").then((response) => response.data),
       },
       {
         path: "/myRecommendation/:email",
         element: <MyRecommendation></MyRecommendation>,
         loader: ({ params }) =>
-          axios.get(`http://localhost:5000/myRecommendation/${params?.email}`).then((response) => response.data),
+          axios.get(`https://recommendation-eleven-ph.vercel.app/myRecommendation/${params?.email}`).then((response) => response.data),
       },
       {
         path: "/register",
@@ -69,7 +69,7 @@ const router = createBrowserRouter([
       {
         path: "/allRecommendation",
         element: <AllRecommendations></AllRecommendations>,
-        loader: () => axios.get("http://localhost:5000/addRecommendation").then((response) => response.data),
+        loader: () => axios.get("https://recommendation-eleven-ph.vercel.app/addRecommendation").then((response) => response.data),
       },
       {
         path: "/addQueries",
@@ -91,7 +91,7 @@ const router = createBrowserRouter([
         path: "/update/:id",
         element: <Update></Update>,
         loader: ({ params }) =>
-          axios.get(`http://localhost:5000/queries/${params.email}/${params.id}`).then((response) => response.data),
+          axios.get(`https://recommendation-eleven-ph.vercel.app/queries/${params.email}/${params.id}`).then((response) => response.data),
       },
       {
         path: "*",

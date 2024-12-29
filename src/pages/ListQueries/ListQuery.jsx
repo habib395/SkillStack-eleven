@@ -19,7 +19,7 @@ const ListQuery = ({ item, queriesList, setQueriesList }) => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        // fetch(`http://localhost:5000/queries/${_id}`,{
+        // fetch(`https://recommendation-eleven-ph.vercel.app/queries/${_id}`,{
         //     method: "DELETE",
         // })
         // .then((res) => res.json())
@@ -36,7 +36,7 @@ const ListQuery = ({ item, queriesList, setQueriesList }) => {
         //     }
         // })
         axios
-          .delete(`http://localhost:5000/queries/${_id}`)
+          .delete(`https://recommendation-eleven-ph.vercel.app/queries/${_id}`)
           .then((response) => {
             const data = response.data;
             console.log(data);

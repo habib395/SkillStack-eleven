@@ -48,7 +48,7 @@ const AddQueries = () => {
     };
     console.log(newQueries);
 
-    // fetch("http://localhost:5000/addQueries", {
+    // fetch("https://recommendation-eleven-ph.vercel.app/addQueries", {
     //   method: "POST",
     //   headers: {
     //     "content-type": "application/json",
@@ -69,7 +69,7 @@ const AddQueries = () => {
     //   });
     // event.target.reset();
 
-    axios.post("http://localhost:5000/addQueries", newQueries, {
+    axios.post("https://recommendation-eleven-ph.vercel.app/addQueries", newQueries, {
       headers: {
           "Content-Type": "application/json",
       },

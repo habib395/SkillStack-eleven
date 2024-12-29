@@ -13,7 +13,7 @@ const RecommendationMe = () => {
   useEffect(() => {
     if (userEmail) {
         axios
-            .get(`http://localhost:5000/myRecommendation/${userEmail}`)
+            .get(`https://recommendation-eleven-ph.vercel.app/myRecommendation/${userEmail}`)
             .then((response) => setQueriesList(response.data))
             .catch((error) => console.error("Error fetching queries:", error));
     }

@@ -7,7 +7,6 @@ const AllRecommendations = () => {
   return (
     <>
       <div>
-        <h2>All recommendation page start here</h2>
         {items.map((item) => (
           <div
             key={item._id}

@@ -47,7 +47,7 @@ const Details = () => {
 
   useEffect(() => {
     axios
-        .get(`http://localhost:5000/addRecommendation/${_id}`)
+        .get(`https://recommendation-eleven-ph.vercel.app/addRecommendation/${_id}`)
         .then((response) => setRecommendation(response.data))
         .catch((error) => console.error("Error fetching recommendation:", error));
 }, [_id]);
@@ -78,7 +78,7 @@ const Details = () => {
     };
 
     axios
-      .post("http://localhost:5000/addRecommendation", newReQueries, {
+      .post("https://recommendation-eleven-ph.vercel.app/addRecommendation", newReQueries, {
         headers: { "Content-Type": "application/json" },
       })
       .then((postResponse) => {
@@ -86,7 +86,7 @@ const Details = () => {
         if (data.insertedId) {
           // Recommendation successfully added, now increment recommendation count
           axios
-            .put(`http://localhost:5000/incrementRecommendation/${queryId}`)
+            .put(`https://recommendation-eleven-ph.vercel.app/incrementRecommendation/${queryId}`)
             .then((putResponse) => {
               const response = putResponse.data;
               if (

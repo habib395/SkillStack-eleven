@@ -9,14 +9,14 @@ const MyQueries = () => {
     const [queriesList, setQueriesList] = useState([])
 
     // useEffect(() =>{
-    //         fetch(`http://localhost:5000/queries/${email}`)
+    //         fetch(`https://recommendation-eleven-ph.vercel.app/queries/${email}`)
     //         .then((res) => res.json())
     //         .then((data) => setQueriesList(data))
     //         .catch((error) => console.error("Error fetching queries:", error))
     //     }, [email])
     useEffect(() => {
       axios
-          .get(`http://localhost:5000/queries/${email}`)
+          .get(`https://recommendation-eleven-ph.vercel.app/queries/${email}`)
           .then((response) => setQueriesList(response.data))
           .catch((error) => console.error("Error fetching queries:", error));
   }, [email]);

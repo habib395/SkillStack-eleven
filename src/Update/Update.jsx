@@ -50,7 +50,7 @@ const Update = () => {
       recommendationCount,
     };
     // console.log(newQueries);
-    // fetch(`http://localhost:5000/queries/${_id}`,{
+    // fetch(`https://recommendation-eleven-ph.vercel.app/queries/${_id}`,{
     //     method: 'PUT',
     //     headers:{
     //         "content-type" : 'application/json',
@@ -71,7 +71,7 @@ const Update = () => {
     // })
     // event.target.reset()
     axios
-      .put(`http://localhost:5000/queries/${_id}`, newQueries, {
+      .put(`https://recommendation-eleven-ph.vercel.app/queries/${_id}`, newQueries, {
         headers: {
           "Content-Type": "application/json",
         },

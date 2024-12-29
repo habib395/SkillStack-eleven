@@ -105,7 +105,7 @@ const Register = () => {
             required
           />
         </div>
-        <div className="form-control">
+        <div className="form-control relative">
           <label className="label">
             <span className="label-text">Password</span>
           </label>

@@ -14,7 +14,7 @@ const AllRecommendations = () => {
   useEffect(() => {
     if (userEmail) {
         axios
-            .get(`http://localhost:5000/myRecommendation/${userEmail}`)
+            .get(`https://recommendation-eleven-ph.vercel.app/myRecommendation/${userEmail}`)
             .then((response) => setItems(response.data))
             .catch((error) => console.error("Error fetching equipment:", error));
     }

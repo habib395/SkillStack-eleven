@@ -34,7 +34,7 @@ const MtRecommendati = ({ item }) => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`http://localhost:5000/myRecommendation/${_id}`)
+          .delete(`https://recommendation-eleven-ph.vercel.app/myRecommendation/${_id}`)
           .then((response) => {
             console.log(response.data);
           })
