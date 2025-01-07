@@ -16,7 +16,7 @@ const AllRecommendations = () => {
               <div className="flex items-center gap-2">
                 <figure>
                   <img
-                    src={item.UserImage}
+                    src={item.recommendationPhotoURL}
                     className="w-12 h-12 rounded-full"
                     alt={item.ItemName}
                   />
@@ -25,7 +25,7 @@ const AllRecommendations = () => {
               </div>
               <p>{item.readableDate}</p>
               <div>
-                <p className="text-center p-2">{item.recommendationReason}</p>
+                <p className="text-center p-2 border rounded-lg mt-3">{item.recommendationReason}</p>
                 <p className="p-2">{item.recommendationProductName}</p>
               </div>
             </div>

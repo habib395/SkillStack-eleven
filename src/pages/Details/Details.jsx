@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { NavLink, useLoaderData } from "react-router-dom";
+import { NavLink, useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
 import ListRecommendation from "../../ListRecommendation/ListRecommendation";
@@ -13,6 +13,8 @@ const Details = () => {
     recommendation,
     setRecommendation,
   } = useContext(AuthContext);
+
+  const navigate = useNavigate()
   
 
   const currentDate = Date.now();
@@ -39,7 +41,7 @@ const Details = () => {
     productName,
     BoycottingReasonDetails,
   } = useLoaderData();
-  // console.log(_id)
+  // console.log(userImage)
   useEffect(() => {
     setRecommendationCount(initialRecommendationCount);
   }, [initialRecommendationCount]);
@@ -98,20 +100,11 @@ const Details = () => {
                   { ...newReQueries, _id: data.insertedId },
                 ]);
                 setRecommendationCount((prevCount) => prevCount + 1);
-
-                // Show success message
-                Swal.fire({
-                  title: "Success!",
-                  text: "Recommendation Added Successfully",
-                  icon: "success",
-                  confirmButtonText: "Cool",
-                });
-              } else {
-                console.error(
-                  "Error updating recommendation count:",
-                  response.message
-                );
+                
               }
+            })
+            .then(() =>{
+              navigate("/allRecommendation")
             })
             .catch((error) => {
               console.error("Error updating recommendation count:", error);
@@ -171,7 +164,7 @@ const Details = () => {
       {/* Recommendation section */}
       <div className="bg-green-200 p-4 sm:p-16">
         <h2 className="sm:text-3xl font-semibold text-center py-5">
-          Add Queries
+          Add Recommendation
         </h2>
         <form onSubmit={handleRecommendQueries}>
           <div className="md:flex">
@@ -182,7 +175,7 @@ const Details = () => {
               <input
                 type="text"
                 name="recommendationTitle"
-                placeholder="Recommended product Name"
+                placeholder="Recommended product Title"
                 className="input input-bordered"
                 required
               />
@@ -210,6 +203,8 @@ const Details = () => {
                 name="recommendationPhotoURL"
                 placeholder="Recommended Product Image"
                 className="input input-bordered w-full"
+                // defaultValue={PhotoURL}
+                // readOnly
               />
             </div>
           </div>

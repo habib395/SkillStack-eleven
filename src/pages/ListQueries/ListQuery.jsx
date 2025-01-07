@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 
 const ListQuery = ({ item, queriesList, setQueriesList }) => {
   // const { email } = useParams()
-  //   console.log(item)
+    // console.log(queriesList)
 
   const { _id } = item;
   const handleDelete = (_id) => {
@@ -25,7 +25,7 @@ const ListQuery = ({ item, queriesList, setQueriesList }) => {
           .then((response) => {
             const data = response.data;
             console.log(data);
-            if (data.deleteCount > 0) {
+            if (data.deletedCount > 0) {
               Swal.fire({
                 title: "Deleted!",
                 text: "Your file has been deleted.",
@@ -34,6 +34,7 @@ const ListQuery = ({ item, queriesList, setQueriesList }) => {
 
               // Update the queries list
               const remaining = queriesList.filter(equ => equ._id !== _id);
+              console.log(remaining)
               setQueriesList(remaining);
             }
           })

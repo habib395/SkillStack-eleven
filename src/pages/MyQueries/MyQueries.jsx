@@ -8,7 +8,6 @@ const MyQueries = () => {
   const [queriesList, setQueriesList] = useState([]);
   const [gridCols, setGridCols] = useState("grid-cols-1");
   const [search, setSearch] = useState("");
-  const [products, setProducts] = useState()
 
   const handleGrid1 = () => setGridCols("grid-cols-1");
   const handleGrid2 = () => setGridCols("grid-cols-2");

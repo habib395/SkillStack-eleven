@@ -49,27 +49,7 @@ const Update = () => {
       currentDate,
       recommendationCount,
     };
-    // console.log(newQueries);
-    // fetch(`https://recommendation-eleven-ph.vercel.app/queries/${_id}`,{
-    //     method: 'PUT',
-    //     headers:{
-    //         "content-type" : 'application/json',
-    //     },
-    //     body: JSON.stringify(newQueries),
-    // })
-    // .then((res) => res.json())
-    // .then((data) =>{
-    //     console.log(data)
-    //     if (data.modifiedCount > 0) {
-    //         Swal.fire({
-    //           title: "Success!",
-    //           text: "Queries Updated Successfully",
-    //           icon: "success",
-    //           confirmButtonText: "Cool",
-    //         });
-    //       }
-    // })
-    // event.target.reset()
+
     axios
       .put(`https://recommendation-eleven-ph.vercel.app/queries/${_id}`, newQueries, {
         headers: {
