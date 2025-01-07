@@ -28,10 +28,10 @@ const AllRecommendations = () => {
           <thead>
             <tr className="bg-gray-100">
               <th className="border border-gray-300">Image</th>
-              <th className="border border-gray-300">Recommendation Name</th>
+              <th className="border border-gray-300">Product Name</th>
+              <th className="border border-gray-300">Recommender Name</th>
               <th className="border border-gray-300">Date</th>
               <th className="border border-gray-300">Reason</th>
-              <th className="border border-gray-300">Product Name</th>
               <th className="border border-gray-300">Action</th>
 
             </tr>

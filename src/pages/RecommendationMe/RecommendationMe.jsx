@@ -5,10 +5,10 @@ import axios from 'axios';
 
 const RecommendationMe = () => {
   const items = useLoaderData();
-  console.log(items)
+  // console.log(items)
   const { user } = useContext(AuthContext);
   const userEmail = user?.email;
-  console.log(userEmail)
+  // console.log(userEmail)
 
   const [queriesList, setQueriesList] = useState([]);
 

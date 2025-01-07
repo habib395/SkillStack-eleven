@@ -68,10 +68,10 @@ const MtRecommendati = ({ item, items, setItems }) => {
           />
         </figure>
         </td>
+        <td className="border border-gray-300 p-2">{item.reProductName}</td>
         <td className="border border-gray-300 p-2">{item.recommenderName}</td>
         <td className="border border-gray-300 p-2">{item.readableDate}</td>
         <td className="border border-gray-300 p-2">{item.recommendationReason}</td>
-        <td className="border border-gray-300 p-2">{item.reProductName}</td>
         <td className="border border-gray-300 p-2">
           <button
           onClick={() => handleDelete(_id)}
