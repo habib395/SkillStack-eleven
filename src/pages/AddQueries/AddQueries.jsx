@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 const AddQueries = () => {
   const { user } = useContext(AuthContext);
@@ -30,7 +31,7 @@ const AddQueries = () => {
       currentDate
     );
     // const readableDate  = Date.now(currentDate).toLocaleString()
-    console.log(readableDate)
+    // console.log(readableDate)
     const recommendationCount = 0;
 
     // console.log(productName, productBrand, PhotoURL, queryTitle, BoycottingReasonDetails)
@@ -46,29 +47,7 @@ const AddQueries = () => {
       readableDate,
       recommendationCount,
     };
-    console.log(newQueries);
-
-    // fetch("https://recommendation-eleven-ph.vercel.app/addQueries", {
-    //   method: "POST",
-    //   headers: {
-    //     "content-type": "application/json",
-    //   },
-    //   body: JSON.stringify(newQueries),
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     console.log(data);
-    //     if (data.insertedId) {
-    //       Swal.fire({
-    //         title: "Success!",
-    //         text: "Equipment Added Successfully",
-    //         icon: "success",
-    //         confirmButtonText: "Cool",
-    //       });
-    //     }
-    //   });
-    // event.target.reset();
-
+    // console.log(newQueries);
     axios.post("https://recommendation-eleven-ph.vercel.app/addQueries", newQueries, {
       headers: {
           "Content-Type": "application/json",

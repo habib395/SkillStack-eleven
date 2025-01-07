@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 const Query = ({ product }) => {
   // console.log(product);
-const { _id, productBrand, recommendationCount} = product
+const { _id, productName, recommendationCount} = product
   return (
     <div className="card card-compact bg-base-100 shadow-xl">
       <figure>
@@ -13,7 +13,7 @@ const { _id, productBrand, recommendationCount} = product
         />
       </figure>
       <div className="card-body">
-        <h2 className="">{productBrand}
+        <h2 className="">{productName}
           </h2>
           <div className="badge badge-secondary">{recommendationCount}</div>
         <NavLink to={`/details/${_id}`}>

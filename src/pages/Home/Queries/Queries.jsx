@@ -8,13 +8,7 @@ const Queries = () => {
   const [products, setProducts] = useState(allProducts);
   const [gridCols, setGridCols] = useState("grid-cols-1");
   const [search, setSearch] = useState("");
-  // console.log(search)
-  // console.log(products  )
-  //   console.log(products);
-  // const handleSortedPrice = () =>{
-  //     const sortedProducts = [...products].sort((a, b) =>
-  //         parseFloat(a.currentDate) - parseFloat(b.currentDate))
-  //     setProducts(sortedProducts)}
+
 
   const handleGrid1 = () => setGridCols("grid-cols-1");
   const handleGrid2 = () => setGridCols("grid-cols-2");
@@ -28,10 +22,6 @@ const Queries = () => {
         import.meta.env.VITE_API_URL
       }/addQueries?search=${search || ''}`
       )
-      // {console.log(data)}
-      // const sortedProducts = data.sort(
-      //   (a, b) => new Date(b.readableDate) - new Date(a.readableDate)
-      // )
       setProducts(data)
     }catch(error){
       console.error("Error fetching search queries:", error)

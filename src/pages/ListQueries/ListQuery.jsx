@@ -1,3 +1,4 @@
+import axios from "axios";
 import React from "react";
 // import { Slide } from 'react-awesome-reveal';
 import { Link, NavLink, useParams } from "react-router-dom";
@@ -19,22 +20,6 @@ const ListQuery = ({ item, queriesList, setQueriesList }) => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        // fetch(`https://recommendation-eleven-ph.vercel.app/queries/${_id}`,{
-        //     method: "DELETE",
-        // })
-        // .then((res) => res.json())
-        // .then((data) =>{
-        //     console.log(data)
-        //     if(data.deleteCount > 0){
-        //         Swal.fire({
-        //             title: "Deleted!",
-        //             text: "Your file has been deleted.",
-        //             icon: "success",
-        //           });
-        //           const remaining = queriesList.filter(equ => equ._id !==_id)
-        //           setQueriesList(remaining)
-        //     }
-        // })
         axios
           .delete(`https://recommendation-eleven-ph.vercel.app/queries/${_id}`)
           .then((response) => {
@@ -48,7 +33,7 @@ const ListQuery = ({ item, queriesList, setQueriesList }) => {
               });
 
               // Update the queries list
-              const remaining = queriesList.filter((equ) => equ._id !== _id);
+              const remaining = queriesList.filter(equ => equ._id !== _id);
               setQueriesList(remaining);
             }
           })

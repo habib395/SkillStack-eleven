@@ -8,7 +8,6 @@ const AllRecommendations = () => {
     const {user, } = useContext(AuthContext)
     const userEmail = user?.email
   const [items, setItems] = useState([]);
-//   console.log()
 
 
   useEffect(() => {
