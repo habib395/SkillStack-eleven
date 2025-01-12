@@ -38,7 +38,7 @@ const MtRecommendati = ({ item, items, setItems }) => {
             const data = response.data;
             if (data) {
               const remaining = items.filter((equ) => equ._id !== _id);
-              console.log(remaining);
+              // console.log(remaining);
               setItems(remaining);
               Swal.fire({
                 title: "Deleted!",

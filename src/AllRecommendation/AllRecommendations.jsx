@@ -3,7 +3,7 @@ import { useLoaderData } from "react-router-dom";
 
 const AllRecommendations = () => {
   const items = useLoaderData();
-  console.log(items);
+  // console.log(items);
   return (
     <>
       <div>

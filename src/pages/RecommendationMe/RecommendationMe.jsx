@@ -2,9 +2,11 @@ import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import { useLoaderData } from 'react-router-dom';
 import axios from 'axios';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const RecommendationMe = () => {
   const items = useLoaderData();
+  const axiosSecure = useAxiosSecure()
   // console.log(items)
   const { user } = useContext(AuthContext);
   const userEmail = user?.email;
@@ -14,8 +16,8 @@ const RecommendationMe = () => {
 
   useEffect(() => {
     if (userEmail) {
-        axios
-            .get(`https://recommendation-eleven-ph.vercel.app/myRecommendation/${userEmail}`)
+        axiosSecure
+            .get(`http://localhost:5000/myRecommendation/${userEmail}`)
             .then((response) => setQueriesList(response.data))
             .catch((error) => console.error("Error fetching queries:", error));
     }

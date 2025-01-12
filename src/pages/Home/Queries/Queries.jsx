@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import Query from "../../Query/Query";
 import axios, {isCancel, AxiosError} from 'axios';
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const Queries = () => {
   const allProducts = useLoaderData();
   const [products, setProducts] = useState(allProducts);
   const [gridCols, setGridCols] = useState("grid-cols-1");
   const [search, setSearch] = useState("");
+  const axiosSecure = useAxiosSecure()
 
 
   const handleGrid1 = () => setGridCols("grid-cols-1");
@@ -17,11 +19,12 @@ const Queries = () => {
   useEffect(()=>{ 
   const fetchAllQueries = async () => {
     try{
-    const { data } = await axios.get(
-      `${
-        import.meta.env.VITE_API_URL
-      }/addQueries?search=${search || ''}`
-      )
+      const { data } = await axiosSecure.get(
+        `${import.meta.env.VITE_API_URL}/addQueries?search=${search || ""}`
+      );
+    // const { data } = await axios.get(
+    //   `${import.meta.env.VITE_API_URL}/addQueries?search=${search || ''}`
+    //   )
       setProducts(data)
     }catch(error){
       console.error("Error fetching search queries:", error)
@@ -29,7 +32,6 @@ const Queries = () => {
   }
     fetchAllQueries()
   },[search])
-  // console.log(products)
 
 
 
@@ -61,7 +63,6 @@ const Queries = () => {
       </div>
       <div>
       </div>
-      {/* <button onClick={handleSortedPrice} className="btn bg-green-500 m-2 sm:m-6">Sort By</button> */}
       <div className={`grid ${gridCols} gap-4 p-2 sm:p-10`}>
         {products?.map((product) => (
           <Query key={product._id} product={product}></Query>

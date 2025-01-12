@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import ListQuery from "../ListQueries/ListQuery";
 import axios from "axios";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const MyQueries = () => {
   const { email } = useParams();
   const [queriesList, setQueriesList] = useState([]);
   const [gridCols, setGridCols] = useState("grid-cols-1");
   const [search, setSearch] = useState("");
+  const axiosSecure = useAxiosSecure()
 
   const handleGrid1 = () => setGridCols("grid-cols-1");
   const handleGrid2 = () => setGridCols("grid-cols-2");
@@ -16,8 +18,8 @@ const MyQueries = () => {
  
  
   useEffect(() => {
-    axios
-      .get(`https://recommendation-eleven-ph.vercel.app/queries/${email}`)
+    axiosSecure
+      .get(`http://localhost:5000/queries/${email}`)
       .then((response) => setQueriesList(response.data))
       .catch((error) => console.error("Error fetching queries:", error));
   }, [email]);
@@ -25,7 +27,7 @@ const MyQueries = () => {
   useEffect(() => {
     const fetchAllQueries = async () => {
       try {
-        const { data } = await axios.get(
+        const { data } = await axiosSecure.get(
           `${import.meta.env.VITE_API_URL}/addQueries?search=${search || ""}`
         );
       setQueriesList(data)
@@ -100,3 +102,7 @@ const MyQueries = () => {
 };
 
 export default MyQueries;
+
+
+// http://localhost:5000/queries/md.habiburrahmanjwd@gmail.com
+// http://locathost:5000/queries/md.habiburrahmanjwd@gmail.com
