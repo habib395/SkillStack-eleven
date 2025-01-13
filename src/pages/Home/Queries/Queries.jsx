@@ -19,7 +19,7 @@ const Queries = () => {
   useEffect(()=>{ 
   const fetchAllQueries = async () => {
     try{
-      const { data } = await axiosSecure.get(
+      const { data } = await axios.get(
         `${import.meta.env.VITE_API_URL}/addQueries?search=${search || ""}`
       );
     // const { data } = await axios.get(

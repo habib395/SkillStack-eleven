@@ -17,7 +17,7 @@ const RecommendationMe = () => {
   useEffect(() => {
     if (userEmail) {
         axiosSecure
-            .get(`http://localhost:5000/myRecommendation/${userEmail}`)
+            .get(`/myRecommendation/${userEmail}`)
             .then((response) => setQueriesList(response.data))
             .catch((error) => console.error("Error fetching queries:", error));
     }

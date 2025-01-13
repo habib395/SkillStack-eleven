@@ -5,15 +5,34 @@ import { useNavigate } from 'react-router-dom';
 
 
 const axiosInstance = axios.create({
-    baseURL: 'http://localhost:5000',
+    baseURL: 'https://recommendation-eleven-ph.vercel.app',
     withCredentials: true
 })
 const useAxiosSecure = () => {
+
 
     const { handleLogOut } = useAuth()
     const navigate = useNavigate()
 
     useEffect(() =>{
+        axiosInstance.interceptors.request.use(
+            (config) => {
+                // Retrieve the token from localStorage
+                const token = localStorage.getItem('token');
+                
+                // If token exists, add it to the request headers
+                if (token) {
+                    config.headers['Authorization'] = `${token}`;
+                }
+                
+                return config;
+            },
+            (error) => {
+                // Handle the error
+                return Promise.reject(error);
+            }
+        );
+
         axiosInstance.interceptors.response.use(response =>{
             return response
         }, error =>{

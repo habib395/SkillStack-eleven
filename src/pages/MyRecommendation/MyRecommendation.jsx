@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 
 import { AuthContext } from './../../AuthProvider/AuthProvider';
 import MtRecommendati from "./MtRecommendati";
-import axios from "axios";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const AllRecommendations = () => {
@@ -12,17 +11,8 @@ const AllRecommendations = () => {
   // console.log(items)
   const axiosSecure = useAxiosSecure()
 
-
-  //.get(`https://recommendation-eleven-ph.vercel.app/myRecommendation/${userEmail}
-
   useEffect(() => {
     if (userEmail) {
-        // axios
-        //     .get(`http://localhost:5000/myRecommendation/${userEmail}`,{
-        //       withCredentials: true
-        //     })
-        //     .then((response) => setItems(response.data))
-        //     .catch((error) => console.error("Error fetching equipment:", error));
 
         axiosSecure
            .get(`/myRecommendation/${userEmail}`)

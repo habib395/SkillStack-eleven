@@ -54,13 +54,13 @@ const router = createBrowserRouter([
       {
         path: "/recommendation_me",
         element: <RecommendationMe></RecommendationMe>,
-        loader: () => axios.get("https://recommendation-eleven-ph.vercel.app/addRecommendation").then((response) => response.data),
+        loader: () => axios.get("https://recommendation-eleven-ph.vercel.app/addRecommendation",{withCredentials: true}).then((response) => response.data),
       },
       {
         path: "/myRecommendation/:email",
         element: <MyRecommendation></MyRecommendation>,
         loader: ({ params }) =>
-          axios.get(`https://recommendation-eleven-ph.vercel.app/myRecommendation/${params?.email}`).then((response) => response.data),
+          axios.get(`https://recommendation-eleven-ph.vercel.app/myRecommendation/${params?.email}`, {withCredentials: true}).then((response) => response.data),
       },
       {
         path: "/register",

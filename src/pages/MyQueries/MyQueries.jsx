@@ -19,7 +19,7 @@ const MyQueries = () => {
  
   useEffect(() => {
     axiosSecure
-      .get(`http://localhost:5000/queries/${email}`)
+      .get(`/queries/${email}`)
       .then((response) => setQueriesList(response.data))
       .catch((error) => console.error("Error fetching queries:", error));
   }, [email]);
@@ -28,7 +28,7 @@ const MyQueries = () => {
     const fetchAllQueries = async () => {
       try {
         const { data } = await axiosSecure.get(
-          `${import.meta.env.VITE_API_URL}/addQueries?search=${search || ""}`
+          `/addQueries?search=${search || ""}`
         );
       setQueriesList(data)
       } catch (error) {
@@ -104,5 +104,5 @@ const MyQueries = () => {
 export default MyQueries;
 
 
-// http://localhost:5000/queries/md.habiburrahmanjwd@gmail.com
+// https://recommendation-eleven-ph.vercel.app/queries/md.habiburrahmanjwd@gmail.com
 // http://locathost:5000/queries/md.habiburrahmanjwd@gmail.com
