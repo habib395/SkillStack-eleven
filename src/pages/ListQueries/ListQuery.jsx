@@ -22,7 +22,7 @@ const ListQuery = ({ item, queriesList, setQueriesList }) => {
       if (result.isConfirmed) {
         axios
           .delete(`https://recommendation-eleven-ph.vercel.app/queries/${_id}`)
-          .then((response) => {
+          .then((response) => { 
             const data = response.data;
             console.log(data);
             if (data.deletedCount > 0) {

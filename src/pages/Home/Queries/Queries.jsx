@@ -25,7 +25,7 @@ const Queries = () => {
     // const { data } = await axios.get(
     //   `${import.meta.env.VITE_API_URL}/addQueries?search=${search || ''}`
     //   )
-      setProducts(data)
+    setSearch(data)
     }catch(error){
       console.error("Error fetching search queries:", error)
     }

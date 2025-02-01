@@ -180,7 +180,7 @@ const AddQueries = () => {
                 defaultValue={user && user.displayName}
                 placeholder="User Name"
                 className="input input-bordered w-full sm:ml-2"
-                disabled
+                disabled 
               />
             </label>
           </div>
