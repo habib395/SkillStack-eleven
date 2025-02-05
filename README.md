@@ -77,7 +77,7 @@ http://localhost:3000
 
    ## 7. Live Project & Resources
 
-- **Live Project**: [Deployed site link](https://discreet-birth.surge.sh/)  
+- **Live Project**: (https://discreet-birth.surge.sh/)  
 - **Client Repository**: [GitHub Client Repo Link](https://github.com/habib395/SkillStack-eleven)
 - **Server Repository**: [GitHub server Repo Link] (https://github.com/habib395/Skillstak-eleven-server)
 
