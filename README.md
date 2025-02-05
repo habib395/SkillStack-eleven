@@ -6,7 +6,7 @@ A web-based platform where users can post queries about products they want alter
 
 ## 2. Screenshot
 
-(Add a clean and relevant screenshot of the project UI here.)
+![SkillStack Screenshot](https://i.ibb.co.com/VckcfBBQ/11.png)
 
 ## 3. Technologies Used
 
