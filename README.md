@@ -63,13 +63,14 @@ To run this project locally, follow these steps:
    git clone (https://github.com/habib395/SkillStack-eleven)
    git clone (https://github.com/habib395/Skillstak-eleven-server))
 
-   cd client
-npm install
-cd ../server
-npm install
-npm start
-npm run dev
-http://localhost:3000
+- cd client
+- npm install
+- cd ../server
+- npm install
+- npm start
+- npm run dev
+- http://localhost:3000
+  
 ### Notes:
 - Replace `[client-side-repo-link]` and `[server-side-repo-link]` with the actual GitHub repository URLs.
 - Update the `.env` variables with the necessary credentials for Firebase and MongoDB for both the client and server sides.
@@ -79,6 +80,6 @@ http://localhost:3000
 
 - **Live Project**: (https://discreet-birth.surge.sh/)  
 - **Client Repository**: [GitHub Client Repo Link](https://github.com/habib395/SkillStack-eleven)
-- **Server Repository**: [GitHub server Repo Link] (https://github.com/habib395/Skillstak-eleven-server)
+- **Server Repository**: [GitHub server Repo Link](https://github.com/habib395/Skillstak-eleven-server)
 
 
