@@ -53,9 +53,32 @@ A web-based platform where users can post queries about products they want alter
 
 ## 6. How to Run the Project Locally
 
-### Clone the Repository:
+To run this project locally, follow these steps:
 
-Clone the repository to your local machine:
+1. **Clone the repositories:**
 
-```sh
-git clone <repo-link>
+   First, clone both the client-side and server-side repositories using the following commands:
+
+   ```bash
+   git clone (https://github.com/habib395/SkillStack-eleven)
+   git clone (https://github.com/habib395/Skillstak-eleven-server))
+
+   cd client
+npm install
+cd ../server
+npm install
+npm start
+npm run dev
+http://localhost:3000
+### Notes:
+- Replace `[client-side-repo-link]` and `[server-side-repo-link]` with the actual GitHub repository URLs.
+- Update the `.env` variables with the necessary credentials for Firebase and MongoDB for both the client and server sides.
+
+
+   ## 7. Live Project & Resources
+
+- **Live Project**: [Deployed site link](https://discreet-birth.surge.sh/)  
+- **Client Repository**: [GitHub Client Repo Link](https://github.com/habib395/SkillStack-eleven)
+- **Server Repository**: [GitHub server Repo Link] (https://github.com/habib395/Skillstak-eleven-server)
+
+
