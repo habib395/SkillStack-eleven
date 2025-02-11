@@ -1,71 +1,99 @@
 import React, { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import Query from "../../Query/Query";
-import axios, {isCancel, AxiosError} from 'axios';
+import axios from "axios";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { IoSearchSharp } from "react-icons/io5";
 
 const Queries = () => {
   const allProducts = useLoaderData();
   const [products, setProducts] = useState(allProducts);
-  const [gridCols, setGridCols] = useState("grid-cols-1");
+  const [gridCols, setGridCols] = useState("grid-cols-3");
   const [search, setSearch] = useState("");
-  const axiosSecure = useAxiosSecure()
+  const [sortBy, setSortBy] = useState(""); // Sorting state
+  const axiosSecure = useAxiosSecure();
 
 
-  const handleGrid1 = () => setGridCols("grid-cols-1");
-  const handleGrid2 = () => setGridCols("grid-cols-2");
-  const handleGrid3 = () => setGridCols("grid-cols-3");
+  // Function to handle sorting
+  const handleSort = (criteria) => {
+    setSortBy(criteria);
+    let sortedProducts = [...products];
 
-  useEffect(()=>{ 
-  const fetchAllQueries = async () => {
-    try{
-      const { data } = await axios.get(
-        `${import.meta.env.VITE_API_URL}/addQueries?search=${search || ""}`
+    if (criteria === "price") {
+      // Sorting by price after removing the dollar sign and converting to number
+      sortedProducts.sort((a, b) => {
+        const priceA = parseFloat(a.price.replace("$", "")); // Remove the '$' and convert to number
+        const priceB = parseFloat(b.price.replace("$", "")); // Remove the '$' and convert to number
+        return priceA - priceB; // Compare the numbers
+      });
+    } else if (criteria === "recommendation") {
+      // Sorting by recommendation count (descending order)
+      sortedProducts.sort(
+        (a, b) => b.recommendationCount - a.recommendationCount
       );
-    // const { data } = await axios.get(
-    //   `${import.meta.env.VITE_API_URL}/addQueries?search=${search || ''}`
-    //   )
-    setSearch(data)
-    }catch(error){
-      console.error("Error fetching search queries:", error)
     }
-  }
-    fetchAllQueries()
-  },[search])
 
+    setProducts(sortedProducts);
+  };
 
+  // Filter products based on the search query
+  const filteredProducts = products.filter((product) =>
+    product.productName.toLowerCase().includes(search.toLowerCase())
+  );
 
   return (
-    <div className="container  mx-auto sm:p-10">
-      <h1 className="text-2xl font-bold mb-4 text-center text-green-400">
-        SPORT EQUIPMENT
+    <div className="container mx-auto sm:p-10 mt-12">
+      <h1 className="text-4xl font-bold mb-4 text-center text-blue-400 py-6">
+        ALL PRODUCTS
       </h1>
+
+      {/* Sorting and Grid Controls */}
       <div className="sm:flex items-center justify-center sm:mb-6 gap-4">
-        <button onClick={handleGrid1} className="btn bg-green-500">
-          1 Column
-        </button>
-        <button onClick={handleGrid2} className="btn bg-green-500">
-          2 Column
-        </button>
-        <button onClick={handleGrid3} className="btn bg-green-500">
+        <button
+          onClick={() => setGridCols("grid-cols-3")}
+          className="btn bg-blue-500"
+        >
           3 Column
         </button>
-        
-        <div className="flex">
+        <button
+          onClick={() => setGridCols("grid-cols-4")}
+          className="btn bg-blue-500"
+        >
+          4 Column
+        </button>
+        <button
+          onClick={() => setGridCols("grid-cols-5")}
+          className="btn bg-blue-500"
+        >
+          5 Column
+        </button>
+
+        <div className="relative flex items-center">
           <input
-            className="input input-bordered"
+            className="input input-bordered w-full pr-10"
             name="search"
-            onChange={e => setSearch(e.target.value)}
-            placeholder="Product Name"
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Search Product Name..."
           />
-          <button className="btn">Search</button>
+          <IoSearchSharp className="absolute right-3 text-gray-500 text-lg" />
         </div>
+
+        {/* Sorting Dropdown */}
+        <select
+          onChange={(e) => handleSort(e.target.value)}
+          className="select select-bordered"
+          value={sortBy}
+        >
+          <option value="">Sort By</option>
+          <option value="price">Price (Low to High)</option>
+          <option value="recommendation">Most Recommended</option>
+        </select>
       </div>
-      <div>
-      </div>
+
+      {/* Products Grid */}
       <div className={`grid ${gridCols} gap-4 p-2 sm:p-10`}>
-        {products?.map((product) => (
-          <Query key={product._id} product={product}></Query>
+        {filteredProducts?.map((product) => (
+          <Query key={product._id} product={product} />
         ))}
       </div>
     </div>

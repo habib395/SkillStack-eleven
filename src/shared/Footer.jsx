@@ -3,7 +3,7 @@ import { GiBrainstorm } from "react-icons/gi";
 
 const Footer = () => {
   return (
-    <footer className="footer footer-center bg-green-400 text-primary-content p-10">
+    <footer className="footer footer-center bg-blue-400 text-primary-content p-10">
       <aside>
         <div  className="text-4xl">
         <GiBrainstorm />

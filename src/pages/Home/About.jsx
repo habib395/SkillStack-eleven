@@ -12,7 +12,7 @@ const About = () => {
   return (
     <div className="sm:flex flex-cols items-center justify-center">
       <div
-        className="text-white bg-green-500 shadow-2xl p-3 lg:p-10 m-5 rounded-lg lg:w-full h-96"
+        className="text-white bg-blue-500 p-3 lg:p-10 m-5 rounded-lg lg:w-full h-96"
         data-aos="fade-down"
       >
         <p className="text-2xl lg:text-7xl">
@@ -29,7 +29,7 @@ const About = () => {
         </p>
       </div>
       <div
-        className="text-white bg-green-500 shadow-2xl p-3 lg:p-10 m-5 rounded-lg md:w-full h-96"
+        className="text-white bg-blue-500 p-3 lg:p-10 m-5 rounded-lg md:w-full h-96"
         data-aos="fade-up"
       >
         <p className="text-2xl lg:text-7xl">
@@ -43,7 +43,7 @@ const About = () => {
         </p>
       </div>
       <div
-        className="text-white bg-green-500 shadow-2xl p-3 lg:p-10 m-5 rounded-lg md:w-full h-96"
+        className="text-white bg-blue-500 p-3 lg:p-10 m-5 rounded-lg md:w-full h-96"
         data-aos="fade-down"
       >
         <p className="text-2xl lg:text-7xl">

@@ -13,7 +13,6 @@ const AllRecommendations = () => {
 
   useEffect(() => {
     if (userEmail) {
-
         axiosSecure
            .get(`/myRecommendation/${userEmail}`)
            .then((response) => setItems(response.data))
@@ -24,7 +23,7 @@ const AllRecommendations = () => {
   return (
     <>
       <div>
-        <div className="w-10/12 mx-auto py-5">
+        <div className="w-10/12 mx-auto">
         <table className="table-auto border-collapse  border border-gray-300">
           <thead>
             <tr className="bg-gray-100">
