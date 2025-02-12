@@ -22,9 +22,9 @@ const AllRecommendations = () => {
 
   return (
     <>
-      <div>
-        <div className="w-10/12 mx-auto sm:my-32">
-        <table className="table-auto border-collapse  border border-gray-300">
+      <div className="w-11/12 mx-auto my-20">
+        <div className="overflow-x-auto bg-white shadow-md rounded-lg">
+        <table className="table-auto min-w-max w-full border-collapse border border-gray-200">
           <thead>
             <tr className="bg-gray-100">
               <th className="border border-gray-300">Image</th>

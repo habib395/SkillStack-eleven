@@ -24,8 +24,7 @@ const About = () => {
         <p className="lg-py-20 text-center">
           Our Section "Our mission is to empower users to create a seamless
           Product Recommendation Platform where they can add, update, delete,
-          and explore product queries and recommendations, fostering
-          collaborative problem-solving and informed decisions."
+          and explore product."
         </p>
       </div>
 
@@ -41,10 +40,7 @@ const About = () => {
         </h2>
         <p className="lg-py-20 text-center">
           "We offer a dynamic platform where users can easily manage their
-          product queries, share recommendations, and interact with others. Our
-          system empowers users to make informed decisions by exploring detailed
-          recommendations, updates, and expert insights for a variety of
-          products."
+          product queries, share recommendations, and interact with others."
         </p>
       </div>
       <div
@@ -60,9 +56,7 @@ const About = () => {
         <p className="lg-py-20 text-center">
           "We promise to deliver a seamless and responsive platform, ensuring
           every user has the opportunity to explore, share, and recommend
-          products with ease. We are committed to maintaining transparency,
-          security, and providing a user-friendly experience at every stage of
-          interaction."
+          products with ease."
         </p>
       </div>
     </div>

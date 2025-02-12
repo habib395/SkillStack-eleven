@@ -6,7 +6,7 @@ const AllRecommendations = () => {
   // console.log(items);
   return (
     <>
-      <div>
+      <div className="mt-20">
         {items.map((item) => (
           <div
             key={item._id}

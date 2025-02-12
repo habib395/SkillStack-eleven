@@ -111,7 +111,6 @@ const Details = () => {
       .catch((error) => {
         console.error("Error adding recommendation:", error);
       });
-
     form.reset();
   };
 
@@ -133,20 +132,20 @@ const Details = () => {
               alt=""
             />
             <div>
-              <h2 className="hidden md:block text-3xl font-bold text-center text-green-500 opacity-35 bg-emerald-100 p-10 rounded-full">
+              <h2 className="hidden md:block text-3xl font-bold text-center text-blue-500 opacity-35 bg-emerald-100 p-10 rounded-full">
                 Detail Information
               </h2>
             </div>
             <div>
               <h2 className="card-title text-xl my-4">
                 {productBrand}
-                <div className="badge badge-green-500 text-xm">
+                <div className="badge badge-blue-500 text-xm">
                   {readableDate}
                 </div>
               </h2>
               <h1 className="card-title">
                 {productName}
-                <div className="badge badge-green-500">
+                <div className="badge badge-blue-500">
                   {recommendationCount}
                 </div>
               </h1>
@@ -159,7 +158,7 @@ const Details = () => {
         </div>
       </div>
       {/* Recommendation section */}
-      <div className="bg-green-200 p-4 sm:p-16">
+      <div className="bg-blue-200 p-4 sm:p-16">
         <h2 className="sm:text-3xl font-semibold text-center py-5">
           Add Recommendation
         </h2>
@@ -220,8 +219,8 @@ const Details = () => {
           </div>
           <input
             type="submit"
-            value="Add Recommendation"
-            className="btn btn-block bg-green-500 my-3"
+            value="Submit"
+            className="btn btn-block bg-blue-500 my-3"
           />
         </form>
         {/* Recommendation List */}
@@ -244,7 +243,7 @@ const Details = () => {
         <div>
           <NavLink to={"/AllRecommendation"}>
             <h2 className="btn w-11/12 mx-auto text-center">
-              All Recommendations
+              View All Recommendations
             </h2>
           </NavLink>
         </div>

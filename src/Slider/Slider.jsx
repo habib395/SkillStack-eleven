@@ -3,74 +3,67 @@ import sliderImg from "../../assets/img_one.png";
 import sliderImg2 from "../../assets/img_two.png";
 import sliderImg3 from "../../assets/img_three.png";
 
+const images = [sliderImg, sliderImg2, sliderImg3];
+
 const Slider = () => {
-  const [current, setCurrent] = useState(1);
-  const total = 3;
+  const [current, setCurrent] = useState(0);
+  const total = images.length;
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrent((prev) => (prev === total ? 1 : prev + 1));
+      setCurrent((prev) => (prev === total - 1 ? 0 : prev + 1));
     }, 3000);
     return () => clearInterval(interval);
   }, []);
+
+  const prevSlide = () => {
+    setCurrent((prev) => (prev === 0 ? total - 1 : prev - 1));
+  };
+
+  const nextSlide = () => {
+    setCurrent((prev) => (prev === total - 1 ? 0 : prev + 1));
+  };
+
   return (
-    <div>
-      <div className="carousel w-full max-h-96">
-        <div
-          id="slider1"
-          className={`carousel-item relative w-full ${
-            current === 1 ? "block" : "hidden"
-          }`}
-        >
-          <img src={sliderImg} className="w-full" alt="Slider1" />
-          <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-            <button
-              className="btn btn-circle"
-              onClick={() => setCurrent(total)}
-            >
-              ❮
-            </button>
-            <button className="btn btn-circle" onClick={() => setCurrent(2)}>
-              ❯
-            </button>
-          </div>
-        </div>
+    <div className="relative w-full mx-auto">
+      <div className="relative w-full h-[250px] sm:h-[400px] md:h-[500px] overflow-hidden shadow-lg">
+        {images.map((img, index) => (
+          <img
+            key={index}
+            src={img}
+            alt={`Slide ${index + 1}`}
+            className={`absolute w-full h-full object-cover transition-opacity duration-700 ${
+              index === current ? "opacity-100 scale-100" : "opacity-0 scale-95"
+            }`}
+          />
+        ))}
+      </div>
 
-        <div
-          id="slider2"
-          className={`carousel-item relative s-full ${
-            current === 2 ? "block" : "hidden"
-          }`}
-        >
-          <img src={sliderImg2} alt="slider 2" />
-          <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-            <button className="btn btn-circle" onClick={() => setCurrent(1)}>
-              ❮
-            </button>
-            <button
-              className="btn btn-circle"
-              onClick={() => setCurrent(3)}
-            > ❯</button>
-          </div>
-        </div>
+      {/* Navigation Buttons */}
+      <button
+        className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 sm:p-3 rounded-full hover:bg-opacity-75"
+        onClick={prevSlide}
+      >
+        ❮
+      </button>
+      <button
+        className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 sm:p-3 rounded-full hover:bg-opacity-75"
+        onClick={nextSlide}
+      >
+        ❯
+      </button>
 
-        <div
-          id="slider3"
-          className={`carousel-item relative w-full ${
-            current === 3 ? "block" : "hidden"
-          }`}
-        >
-          <img src={sliderImg3} className="w-full" alt="slide 3" />
-          <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-            <button className="btn btn-circle" onClick={() => setCurrent(1)}>
-            ❮
-            </button>
-            <button
-              className="btn btn-circle"
-              onClick={() => setCurrent(3)}
-            > ❯</button>
-          </div>
-        </div>
+      {/* Dots Navigation */}
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+        {images.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrent(index)}
+            className={`w-3 h-3 rounded-full transition-all ${
+              current === index ? "bg-white w-4 h-4" : "bg-gray-400"
+            }`}
+          ></button>
+        ))}
       </div>
     </div>
   );

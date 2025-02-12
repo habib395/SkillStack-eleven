@@ -73,7 +73,7 @@ const AddQueries = () => {
 
   };
   return (
-    <div className="bg-green-200 p-4 sm:p-16">
+    <div className="bg-blue-200 p-4 sm:p-16 mt-10">
       <h2 className="sm:text-3xl font-semibold text-center py-5">
         Add Queries
       </h2>
@@ -187,8 +187,8 @@ const AddQueries = () => {
         </div>
         <input
           type="submit"
-          value="Add Query"
-          className="btn btn-block bg-green-500 my-3"
+          value="Submit"
+          className="btn btn-block bg-blue-500 my-3"
         />
       </form>
     </div>

@@ -75,7 +75,7 @@ const MtRecommendati = ({ item, items, setItems }) => {
         <td className="border border-gray-300 p-2">
           <button
           onClick={() => handleDelete(_id)}
-          className="btn bg-green-500"
+          className="btn bg-blue-500"
         >
           X
         </button>

@@ -18,7 +18,7 @@ const Home = () => {
         <h2 className="text-blue-500 font-bold text-xl sm:text-4xl text-center py-3">
           RECENT PRODUCTS
         </h2>
-        <div className="w-3/4 mx-auto grid grid-cols-1 md:grid-cols-4 gap-4 p-2 sm:p-10">
+        <div className="w-11/12 mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 p-2 sm:p-10">
           {products.map((product, idx) => (
             <ProductCard key={idx} product={product}></ProductCard>
           ))}

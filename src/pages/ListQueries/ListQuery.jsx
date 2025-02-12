@@ -47,25 +47,25 @@ const ListQuery = ({ item, queriesList, setQueriesList }) => {
   return (
     <div>
       <div key={item._id} className="w-10/12 mx-auto py-5">
-        <div className="sm:flex card-side items-center bg-base-100 shadow-xl">
+        <div className="card-side items-center bg-base-100 shadow-xl">
           <figure>
-            <img src={item.PhotoURL} alt={item.ItemName} />
+            <img src={item.PhotoURL} alt={item.ItemName} className="w-48 h-48 sm:w-56 sm:h-56 object-cover rounded-lg mx-auto" />
           </figure>
-          <div className="flex justify-between w-full p-4">
             <div>
-              <h2 className="card-title">{item.productName}</h2>
+              <h2 className="text-center text-xl font-semibold">{item.productName}</h2>
             </div>
-            <div className="card-actions justify-end">
-              <div className="join join-vertical space-y-4">
+          <div className="flex justify-between w-full p-4">
+            <div className="card-actions">
+              <div className="space-y-4">
               <NavLink to={`/details/${_id}`}>
-                  <button className="btn join-item bg-green-500">Details</button>
+                  <button className="btn btn-sm bg-blue-500">Details</button>
                 </NavLink>
                 <Link to={`/update/${_id}`}>
-                  <button className="btn join-item bg-green-500">Update</button>
+                  <button className="btn btn-sm bg-blue-500">Update</button>
                 </Link>
                 <button
                   onClick={() => handleDelete(_id)}
-                  className="btn join-item bg-red-500"
+                  className="btn btn-sm bg-red-500"
                 >
                   Delete
                 </button>

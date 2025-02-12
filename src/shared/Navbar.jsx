@@ -21,12 +21,11 @@ const Navbar = () => {
         {/* Mobile Menu Button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden text-3xl focus:outline-none"
+          className="md:hidden text-3xl focus:outline-none text-blue-500"
         >
-          {isOpen ? <HiX /> : <HiMenu />} {/* Show X when open, Menu when closed */}
+          {isOpen ? <HiX /> : <HiMenu />} 
         </button>
 
-        {/* Navbar Links */}
         <div
           className={`absolute md:static top-16 left-0 w-full md:w-auto bg-base-200 md:flex space-x-6 items-center transition-all duration-300 ${
             isOpen ? "block" : "hidden"
@@ -58,7 +57,7 @@ const Navbar = () => {
           {user?.email ? (
             <button
               onClick={handleLogOut}
-              className="btn btn-sm px-4 py-2 border-2 hover:text-white transition-all duration-300 ease-in-out rounded-md"
+              className="btn btn-sm px-4 py-2 border-2 bg-blue-500 hover:bg-blue-600 transition-all duration-300 ease-in-out rounded-md"
             >
               Logout
             </button>

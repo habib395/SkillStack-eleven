@@ -3,20 +3,14 @@ import { Link, useParams } from "react-router-dom";
 import ListQuery from "../ListQueries/ListQuery";
 import axios from "axios";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { IoSearchSharp } from "react-icons/io5";
 
 const MyQueries = () => {
   const { email } = useParams();
   const [queriesList, setQueriesList] = useState([]);
-  const [gridCols, setGridCols] = useState("grid-cols-1");
   const [search, setSearch] = useState("");
   const axiosSecure = useAxiosSecure()
 
-  const handleGrid1 = () => setGridCols("grid-cols-1");
-  const handleGrid2 = () => setGridCols("grid-cols-2");
-  const handleGrid3 = () => setGridCols("grid-cols-3");
-
- 
- 
   useEffect(() => {
     axiosSecure
       .get(`/queries/${email}`)
@@ -50,7 +44,7 @@ const MyQueries = () => {
         <div className="hero-overlay bg-opacity-60"></div>
         <div className="hero-content text-neutral-content text-center">
           <div className="max-w-md">
-            <h1 className="mb-5 text-5xl font-bold">
+            <h1 className="mb-5 text-3xl sm:text-5xl font-bold">
               Empowering Your Product Queries
             </h1>
             <Link to="/addQueries">
@@ -62,27 +56,17 @@ const MyQueries = () => {
 
       <ul>
         <div className="sm:flex items-center justify-center sm:mb-6 gap-4 my-3">
-          <button onClick={handleGrid1} className="btn bg-green-500">
-            1 Column
-          </button>
-          <button onClick={handleGrid2} className="btn bg-green-500">
-            2 Column
-          </button>
-          <button onClick={handleGrid3} className="btn bg-green-500">
-            3 Column
-          </button>
-
-          <div className="flex">
+          <div className="relative flex items-center p-2">
             <input
-              className="input input-bordered"
+              className="input input-bordered ml-2"
               name="search"
               onChange={(e) => setSearch(e.target.value)}
-              placeholder="Product Name"
+              placeholder="Search Product Name"
             />
-            <button className="btn">Search</button>
+            <IoSearchSharp className="absolute right-3 text-gray-500 text-lg" />
           </div>
         </div>
-        <div className={`grid ${gridCols} gap-4 p-2 sm:p-10`}>
+        <div className={"grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-2 sm:p-10"}>
           {queriesList.length > 0 ? (
             queriesList.map((item) => (
               <ListQuery
