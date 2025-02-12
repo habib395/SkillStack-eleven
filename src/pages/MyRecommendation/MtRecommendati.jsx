@@ -4,14 +4,8 @@ import { AuthContext } from "../../AuthProvider/AuthProvider";
 import axios from "axios";
 
 const MtRecommendati = ({ item, items, setItems }) => {
-  const {
-    recommendationCount,
-    setRecommendationCount,
-  } = useContext(AuthContext);
-  // console.log(items);
+  const { recommendationCount, setRecommendationCount } = useContext(AuthContext);
 
-
-  // console.log(item)
   const { _id, recommendationPhotoURL } = item;
 
   // Initialize recommendation count
@@ -34,11 +28,9 @@ const MtRecommendati = ({ item, items, setItems }) => {
           .delete(
             `https://recommendation-eleven-ph.vercel.app/myRecommendation/${_id}`)
           .then((response) => {
-            console.log(response)
             const data = response.data;
             if (data) {
               const remaining = items.filter((equ) => equ._id !== _id);
-              // console.log(remaining);
               setItems(remaining);
               Swal.fire({
                 title: "Deleted!",
@@ -47,19 +39,19 @@ const MtRecommendati = ({ item, items, setItems }) => {
               })
             }
           })
-        .catch((error) => {
-          console.error("Error deleting recommendation:", error);
-        });
+          .catch((error) => {
+            console.error("Error deleting recommendation:", error);
+          });
       }
     });
   };
+
   return (
-    
     <tr
       key={item._id}
-      className="hover:bg-gray-50"
+      className="hover:bg-gray-50 dark:hover:bg-gray-700 dark:text-white"
     >
-      <td className="border border-gray-300 p-2">
+      <td className="border border-gray-300 p-2 dark:border-gray-600">
         <figure>
           <img
             src={recommendationPhotoURL}
@@ -67,19 +59,19 @@ const MtRecommendati = ({ item, items, setItems }) => {
             alt={item.ItemName}
           />
         </figure>
-        </td>
-        <td className="border border-gray-300 p-2">{item.reProductName}</td>
-        <td className="border border-gray-300 p-2">{item.recommenderName}</td>
-        <td className="border border-gray-300 p-2">{item.readableDate}</td>
-        <td className="border border-gray-300 p-2">{item.recommendationReason}</td>
-        <td className="border border-gray-300 p-2">
-          <button
+      </td>
+      <td className="border border-gray-300 p-2 dark:border-gray-600">{item.reProductName}</td>
+      <td className="border border-gray-300 p-2 dark:border-gray-600">{item.recommenderName}</td>
+      <td className="border border-gray-300 p-2 dark:border-gray-600">{item.readableDate}</td>
+      <td className="border border-gray-300 p-2 dark:border-gray-600">{item.recommendationReason}</td>
+      <td className="border border-gray-300 p-2 dark:border-gray-600">
+        <button
           onClick={() => handleDelete(_id)}
-          className="btn bg-blue-500"
+          className="btn bg-blue-500 dark:bg-blue-700"
         >
           X
         </button>
-        </td>
+      </td>
     </tr>
   );
 };

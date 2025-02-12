@@ -5,41 +5,45 @@ import { useLoaderData } from "react-router-dom";
 import ProductCard from "../ProductCard/ProductCard";
 import Feature from "./Feature";
 
-
 const Home = () => {
   const products = useLoaderData();
+
   return (
-    <div className="min-h-screen bg-gray-200 text-gray-900 mt-16">
-      <Slider></Slider>
-      {/* feature products section */}
-      <Feature></Feature>
-      {/* our products section */}
+    <div className="min-h-screen bg-gray-200 dark:bg-gray-900 text-gray-900 dark:text-white mt-16 transition-all duration-300">
+      <Slider />
+
+      {/* Feature Products Section */}
+      <Feature />
+
+      {/* Our Products Section */}
       <div>
-        <h2 className="text-blue-500 font-bold text-xl sm:text-4xl text-center py-3">
+        <h2 className="text-blue-500 dark:text-blue-400 font-bold text-xl sm:text-4xl text-center py-3">
           RECENT PRODUCTS
         </h2>
         <div className="w-11/12 mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 p-2 sm:p-10">
           {products.map((product, idx) => (
-            <ProductCard key={idx} product={product}></ProductCard>
+            <ProductCard key={idx} product={product} />
           ))}
         </div>
       </div>
-      {/* about us section  */}
+
+      {/* About Us Section */}
       <div className="py-10">
-        <h2 className="text-blue-700 font-bold text-xl sm:text-4xl text-center py-3">
+        <h2 className="text-blue-700 dark:text-blue-400 font-bold text-xl sm:text-4xl text-center py-3">
           ABOUT US
         </h2>
       </div>
-      <About></About>
-      {/* satisfaction section */}
+      <About />
+
+      {/* Reviews Section */}
       <div className="py-10">
-        <h2 className="text-blue-600 font-bold text-2xl sm:text-4xl text-center py-6 uppercase">
+        <h2 className="text-blue-600 dark:text-blue-400 font-bold text-2xl sm:text-4xl text-center py-6 uppercase">
           REVIEWS
         </h2>
 
         <div className="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Card 1 */}
-          <div className="flex items-center border-2 rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform bg-white">
+          {/* Review Card 1 */}
+          <div className="flex items-center border-2 rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform bg-white dark:bg-gray-800 dark:border-gray-700">
             <figure className="w-1/3 h-full">
               <img
                 className="w-full h-full object-cover"
@@ -48,20 +52,22 @@ const Home = () => {
               />
             </figure>
             <div className="p-5 flex-1">
-              <h2 className="font-bold text-xl text-blue-600">Milk Powder</h2>
-              <p className="text-gray-700 text-justify">
+              <h2 className="font-bold text-xl text-blue-600 dark:text-blue-400">
+                Milk Powder
+              </h2>
+              <p className="text-gray-700 dark:text-gray-300 text-justify">
                 "While Dano offers great nutritional value, its price is
                 significantly higher than other milk powders available in the
                 market. I wish it was more affordable for regular use."
               </p>
-              <p className="text-sm text-blue-500 font-bold">
+              <p className="text-sm text-blue-500 dark:text-blue-300 font-bold">
                 Michael J., Pro Footballer
               </p>
             </div>
           </div>
 
-          {/* Card 2 */}
-          <div className="flex items-center border-2 rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform bg-white">
+          {/* Review Card 2 */}
+          <div className="flex items-center border-2 rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform bg-white dark:bg-gray-800 dark:border-gray-700">
             <figure className="w-1/3 h-full">
               <img
                 className="w-full h-full object-cover"
@@ -70,20 +76,22 @@ const Home = () => {
               />
             </figure>
             <div className="p-5 flex-1">
-              <h2 className="font-bold text-xl text-blue-600">Cooking Oil</h2>
-              <p className="text-gray-700 text-justify">
+              <h2 className="font-bold text-xl text-blue-600 dark:text-blue-400">
+                Cooking Oil
+              </h2>
+              <p className="text-gray-700 dark:text-gray-300 text-justify">
                 "Rupchanda cooking oil is of good quality, but I noticed that it
                 gets rancid too quickly after opening. It would be great if the
                 shelf life was a bit longer."
               </p>
-              <p className="text-sm font-bold text-blue-500">
+              <p className="text-sm font-bold text-blue-500 dark:text-blue-300">
                 Liam H., Basketball Enthusiast
               </p>
             </div>
           </div>
 
-          {/* Card 3 */}
-          <div className="flex border-2 rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform bg-white">
+          {/* Review Card 3 */}
+          <div className="flex border-2 rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform bg-white dark:bg-gray-800 dark:border-gray-700">
             <figure className="w-1/3 h-full">
               <img
                 className="w-full h-full object-cover"
@@ -92,21 +100,22 @@ const Home = () => {
               />
             </figure>
             <div className="p-5 flex-1">
-              <h2 className="font-bold text-xl text-blue-600">
+              <h2 className="font-bold text-xl text-blue-600 dark:text-blue-400">
                 Detergent Powder
               </h2>
-              <p className="text-gray-700 text-justify">
+              <p className="text-gray-700 dark:text-gray-300 text-justify">
                 "Surf Excel works well, but the strong scent is a bit
                 overwhelming and causes irritation. I'd prefer a more natural
                 alternative with less harsh chemicals."
               </p>
-              <p className="text-sm font-bold text-blue-500">
+              <p className="text-sm font-bold text-blue-500 dark:text-blue-300">
                 Emma P., Soccer Coach
               </p>
             </div>
           </div>
-          {/* Card 4 */}
-          <div className="flex border-2 rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform bg-white">
+
+          {/* Review Card 4 */}
+          <div className="flex border-2 rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform bg-white dark:bg-gray-800 dark:border-gray-700">
             <figure className="w-1/3 h-full">
               <img
                 className="w-full h-full object-cover"
@@ -115,13 +124,15 @@ const Home = () => {
               />
             </figure>
             <div className="p-5 flex-1">
-              <h2 className="font-bold text-xl text-blue-600">Soap</h2>
-              <p className="text-gray-700 text-justify">
+              <h2 className="font-bold text-xl text-blue-600 dark:text-blue-400">
+                Soap
+              </h2>
+              <p className="text-gray-700 dark:text-gray-300 text-justify">
                 "Lux soap smells great, but it tends to dry out my skin,
                 especially during the winter months. I'm looking for a soap that
                 offers more moisture and lasts longer."
               </p>
-              <p className="text-sm font-bold text-blue-500">
+              <p className="text-sm font-bold text-blue-500 dark:text-blue-300">
                 Ryan T., Team Captain
               </p>
             </div>

@@ -9,7 +9,7 @@ const Queries = () => {
   const allProducts = useLoaderData();
   const [products, setProducts] = useState(allProducts);
   const [search, setSearch] = useState("");
-  const [sortBy, setSortBy] = useState(""); 
+  const [sortBy, setSortBy] = useState("");
 
   // Function to handle sorting
   const handleSort = (criteria) => {
@@ -39,28 +39,27 @@ const Queries = () => {
   );
 
   return (
-    <div className="container mx-auto sm:p-10 mt-12">
-      <h1 className="text-4xl font-bold mb-4 text-center text-blue-400 py-6">
+    <div className="container-fluid mx-auto sm:p-10 mt-12 dark:bg-gray-800 dark:text-white">
+      <h1 className="text-4xl font-bold mb-4 text-center text-blue-400 dark:text-blue-300 py-6">
         ALL PRODUCTS
       </h1>
 
       {/* Sorting and Grid Controls */}
       <div className="sm:flex items-center justify-center sm:mb-6 gap-6">
-
         <div className="relative flex items-center p-2">
           <input
-            className="input input-bordered w-full pr-10"
+            className="input input-bordered w-full pr-10 dark:bg-gray-700 dark:text-white"
             name="search"
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search Product Name..."
           />
-          <IoSearchSharp className="absolute right-3 text-gray-500 text-lg" />
+          <IoSearchSharp className="absolute right-3 text-gray-500 dark:text-gray-300 text-lg" />
         </div>
 
         {/* Sorting Dropdown */}
         <select
           onChange={(e) => handleSort(e.target.value)}
-          className="select select-bordered ml-2"
+          className="select select-bordered ml-2 dark:bg-gray-700 dark:text-white"
           value={sortBy}
         >
           <option value="">Sort By</option>

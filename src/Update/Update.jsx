@@ -36,7 +36,6 @@ const Update = () => {
     const currentDate = Date.now();
     const recommendationCount = 0;
 
-    // console.log(productName, productBrand, PhotoURL, queryTitle, BoycottingReasonDetails)
     const newQueries = {
       productName,
       productBrand,
@@ -58,7 +57,6 @@ const Update = () => {
       })
       .then((response) => {
         const data = response.data;
-        console.log(data);
         if (data.modifiedCount > 0) {
           Swal.fire({
             title: "Success!",
@@ -74,8 +72,9 @@ const Update = () => {
 
     event.target.reset();
   };
+
   return (
-    <div className="bg-green-200 p-4 sm:p-16">
+    <div className="bg-blue-200 p-4 sm:p-16 dark:bg-gray-800 dark:text-white">
       <h2 className="sm:text-3xl font-semibold text-center py-5">
         Update Queries
       </h2>
@@ -83,119 +82,104 @@ const Update = () => {
         <div className="md:flex">
           <div className="form-control md:w-1/2">
             <label className="label">
-              <span className="label-text">Product Name </span>
+              <span className="label-text dark:text-gray-200">Product Name</span>
             </label>
             <input
               type="text"
               name="productName"
               defaultValue={productName}
               placeholder="Product Name"
-              className="input input-bordered"
+              className="input input-bordered dark:bg-gray-700 dark:text-white"
               required
             />
           </div>
           <div className="form-control md:w-1/2">
             <label className="label">
-              <span className="label-text">Product Brand</span>
+              <span className="label-text dark:text-gray-200">Product Brand</span>
             </label>
             <input
               type="text"
               name="productBrand"
               defaultValue={productBrand}
               placeholder="Product Brand"
-              className="input input-bordered"
+              className="input input-bordered dark:bg-gray-700 dark:text-white"
               required
             />
           </div>
         </div>
-        {/* photo URL */}
-        <div className="">
-          <div className="form-control w-full">
-            <label className="label">
-              <span className="label-text">Photo URL</span>
-            </label>
-            <label className="input-group">
-              <input
-                type="url"
-                name="PhotoURL"
-                defaultValue={PhotoURL}
-                placeholder="Photo"
-                className="input input-bordered w-full"
-              />
-            </label>
-          </div>
+
+        <div className="form-control w-full">
+          <label className="label">
+            <span className="label-text dark:text-gray-200">Photo URL</span>
+          </label>
+          <input
+            type="url"
+            name="PhotoURL"
+            defaultValue={PhotoURL}
+            placeholder="Photo"
+            className="input input-bordered w-full dark:bg-gray-700 dark:text-white"
+          />
         </div>
-        {/* photo URL */}
-        <div className="">
-          <div className="form-control w-full">
-            <label className="label">
-              <span className="label-text">Query Title</span>
-            </label>
-            <label className="input-group">
-              <input
-                type="text"
-                name="queryTitle"
-                defaultValue={queryTitle}
-                placeholder="Query Title"
-                className="input input-bordered w-full"
-              />
-            </label>
-          </div>
+
+        <div className="form-control w-full">
+          <label className="label">
+            <span className="label-text dark:text-gray-200">Query Title</span>
+          </label>
+          <input
+            type="text"
+            name="queryTitle"
+            defaultValue={queryTitle}
+            placeholder="Query Title"
+            className="input input-bordered w-full dark:bg-gray-700 dark:text-white"
+          />
         </div>
-        {/* photo URL */}
-        <div className="">
-          <div className="form-control w-full">
-            <label className="label">
-              <span className="label-text">Boycotting Reason Details</span>
-            </label>
-            <label className="input-group">
-              <input
-                type="text"
-                name="BoycottingReasonDetails"
-                defaultValue={BoycottingReasonDetails}
-                placeholder="ex: Is there any Better product that gives me the same quality?"
-                className="input input-bordered w-full"
-              />
-            </label>
-          </div>
+
+        <div className="form-control w-full">
+          <label className="label">
+            <span className="label-text dark:text-gray-200">Boycotting Reason Details</span>
+          </label>
+          <input
+            type="text"
+            name="BoycottingReasonDetails"
+            defaultValue={BoycottingReasonDetails}
+            placeholder="ex: Is there any Better product that gives me the same quality?"
+            className="input input-bordered w-full dark:bg-gray-700 dark:text-white"
+          />
         </div>
-        {/* email and user Name */}
+
         <div className="md:flex">
           <div className="form-control md:w-1/2">
             <label className="label">
-              <span className="label-text">User Email</span>
+              <span className="label-text dark:text-gray-200">User Email</span>
             </label>
-            <label className="input-group">
-              <input
-                type="email"
-                name="UserEmail"
-                defaultValue={user && user.email}
-                placeholder="User Email"
-                className="input input-bordered w-full"
-                disabled
-              />
-            </label>
+            <input
+              type="email"
+              name="UserEmail"
+              defaultValue={user && user.email}
+              placeholder="User Email"
+              className="input input-bordered w-full dark:bg-gray-700 dark:text-white"
+              disabled
+            />
           </div>
           <div className="form-control md:w-1/2">
             <label className="label">
-              <span className="label-text">User Name</span>
+              <span className="label-text dark:text-gray-200">User Name</span>
             </label>
-            <label className="input-group">
-              <input
-                type="text"
-                name="UserName"
-                defaultValue={user && user.displayName}
-                placeholder="User Name"
-                className="input input-bordered w-full sm:ml-2"
-                disabled
-              />
-            </label>
+            <input
+              type="text"
+              name="UserName"
+              defaultValue={user && user.displayName}
+              placeholder="User Name"
+              className="input input-bordered w-full sm:ml-2 dark:bg-gray-700 dark:text-white"
+              disabled
+            />
           </div>
         </div>
+
         <input
           type="submit"
-          value="Update Query"
-          className="btn btn-block bg-green-500 my-3"
+          value="Submit"
+          className="btn btn-block bg-blue-500 my-3 dark:bg-blue-700"
         />
       </form>
     </div>
