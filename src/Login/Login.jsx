@@ -38,7 +38,7 @@ const Login = () => {
     }
   return (
     <div>
-      <form onSubmit={handleSubmit} className="card-body bg-base-200 min-h-screen w-11/12 mx-auto rounded-lg my-10">
+      <form onSubmit={handleSubmit} className="card-body bg-base-200 md:w-1/2 min-h-screen w-11/12 mx-auto rounded-lg my-10 sm:mt-20">
         <div className="form-control">
           <label className="label">
             <span className="label-text">Email</span>
@@ -69,7 +69,7 @@ const Login = () => {
             </NavLink>
           </label>
           <div className="form-control mt-6">
-                <button type="submit" className="btn bg-green-500">Login</button>
+                <button type="submit" className="btn bg-blue-500">Login</button>
             </div>
         </div>
         <button className="btn btn-active mt-4" onClick={handleGoogleLoginTwo}>
@@ -78,7 +78,7 @@ const Login = () => {
             {error && <p className="text-red-500">Invalid Email or Password</p>}
             <p>
                 New to the website?{" "}
-                <NavLink to="/register" className="text-green-500">Register</NavLink>
+                <NavLink to="/register" className="text-blue-500">Register</NavLink>
             </p>
       </form>
       <ToastContainer />

@@ -68,7 +68,7 @@ const Register = () => {
     }
   return (
     <>
-      <form onSubmit={handleSubmit} className="card-body bg-base-300 w-11/12 mx-auto min-h-screen md:w-1/2 rounded-lg my-10">
+      <form onSubmit={handleSubmit} className="card-body bg-base-300 w-11/12 mx-auto min-h-screen md:w-1/2 rounded-lg my-10 sm:mt-20">
         <div className="form-control">
           <label className="label">
             <span className="label-text">Name</span>
@@ -121,13 +121,13 @@ const Register = () => {
           </label>
         </div>
         <div className="form-control mt-6">
-          <button onClick={handleRegister} className="btn btn-green-500 mt-4">Register</button>
+          <button onClick={handleRegister} className="btn bg-blue-500 mt-4">Register</button>
         </div>
         <button type="button" className="btn btn-active mt-4" onClick={handleGoogleLoginTwo}>
           <FaGoogle />Continue With Google
           </button>
           <p>Already Register?{""}
-            <NavLink className="text-green-500" to='/login'>Login</NavLink>
+            <NavLink className="text-blue-500" to='/login'>Login</NavLink>
           </p>
           {
             error && <p className="text-red-500">{error}</p>

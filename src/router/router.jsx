@@ -17,6 +17,7 @@ import Details from "../pages/Details/Details";
 import AllRecommendations from "../AllRecommendation/AllRecommendations";
 import Queries from "../pages/Home/Queries/Queries";
 import axios from 'axios';
+import Category from './../pages/Home/Category';
 
 const router = createBrowserRouter([
   {
@@ -92,6 +93,10 @@ const router = createBrowserRouter([
         element: <Update></Update>,
         loader: ({ params }) =>
           axios.get(`https://recommendation-eleven-ph.vercel.app/queries/${params.email}/${params.id}`).then((response) => response.data),
+      },
+      {
+        path: "/category/:categoryName",
+        element: <Category />, 
       },
       {
         path: "*",

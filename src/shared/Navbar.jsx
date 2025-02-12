@@ -13,7 +13,7 @@ const Navbar = () => {
       <div className="w-11/12 mx-auto flex justify-between items-center py-4">
         
         {/* Logo Section */}
-        <NavLink to="/" className="flex items-center text-green-500 text-2xl font-semibold">
+        <NavLink to="/" className="flex items-center text-blue-500 text-2xl font-semibold">
           <GiBrainstorm className="text-3xl mr-2" />
           SkillStack
         </NavLink>
@@ -32,21 +32,21 @@ const Navbar = () => {
             isOpen ? "block" : "hidden"
           } md:block`}
         >
-          <NavLink to="/" className="block md:inline-block py-2 md:py-0 font-bold ml-4">
+          <NavLink to="/" className="block md:inline-block py-2 md:py-0 hover:text-blue-400 font-semibold ml-4">
             Home
           </NavLink>
-          <NavLink to="/queries" className="block md:inline-block py-2 md:py-0 font-bold ml-4">
+          <NavLink to="/queries" className="block md:inline-block py-2 md:py-0 hover:text-blue-400 font-semibold ml-4">
             All Products
           </NavLink>
           {user?.email && (
             <>
-              <NavLink to="/recommendation_me" className="block md:inline-block py-2 md:py-0 font-bold ml-4">
+              <NavLink to="/recommendation_me" className="block md:inline-block py-2 md:py-0 hover:text-blue-400 font-semibold ml-4">
                 Recommendations For Me
               </NavLink>
-              <NavLink to={`/queries/${user.email}`} className="block md:inline-block py-2 md:py-0 font-bold ml-4">
+              <NavLink to={`/queries/${user.email}`} className="block md:inline-block py-2 md:py-0 hover:text-blue-400 font-semibold ml-4">
                 My Queries
               </NavLink>
-              <NavLink to={`/myRecommendation/${user.email}`} className="block md:inline-block py-2 md:py-0 font-bold ml-4">
+              <NavLink to={`/myRecommendation/${user.email}`} className="block md:inline-block py-2 md:py-0 hover:text-blue-400 font-semibold ml-4">
                 My Recommendation
               </NavLink>
             </>
@@ -54,7 +54,7 @@ const Navbar = () => {
         </div>
 
         {/* Authentication Buttons */}
-        <div className="hidden md:flex">
+        <div className="md:flex">
           {user?.email ? (
             <button
               onClick={handleLogOut}
@@ -63,7 +63,7 @@ const Navbar = () => {
               Logout
             </button>
           ) : (
-            <NavLink to="/login" className="btn btn-sm bg-green-500 text-white hover:bg-green-600">
+            <NavLink to="/login" className="btn btn-sm bg-blue-500 text-white hover:bg-blue-600">
               Login
             </NavLink>
           )}

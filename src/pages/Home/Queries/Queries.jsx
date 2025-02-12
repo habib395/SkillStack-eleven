@@ -8,11 +8,8 @@ import { IoSearchSharp } from "react-icons/io5";
 const Queries = () => {
   const allProducts = useLoaderData();
   const [products, setProducts] = useState(allProducts);
-  const [gridCols, setGridCols] = useState("grid-cols-3");
   const [search, setSearch] = useState("");
-  const [sortBy, setSortBy] = useState(""); // Sorting state
-  const axiosSecure = useAxiosSecure();
-
+  const [sortBy, setSortBy] = useState(""); 
 
   // Function to handle sorting
   const handleSort = (criteria) => {
@@ -48,27 +45,9 @@ const Queries = () => {
       </h1>
 
       {/* Sorting and Grid Controls */}
-      <div className="sm:flex items-center justify-center sm:mb-6 gap-4">
-        <button
-          onClick={() => setGridCols("grid-cols-3")}
-          className="btn bg-blue-500"
-        >
-          3 Column
-        </button>
-        <button
-          onClick={() => setGridCols("grid-cols-4")}
-          className="btn bg-blue-500"
-        >
-          4 Column
-        </button>
-        <button
-          onClick={() => setGridCols("grid-cols-5")}
-          className="btn bg-blue-500"
-        >
-          5 Column
-        </button>
+      <div className="sm:flex items-center justify-center sm:mb-6 gap-6">
 
-        <div className="relative flex items-center">
+        <div className="relative flex items-center p-2">
           <input
             className="input input-bordered w-full pr-10"
             name="search"
@@ -81,7 +60,7 @@ const Queries = () => {
         {/* Sorting Dropdown */}
         <select
           onChange={(e) => handleSort(e.target.value)}
-          className="select select-bordered"
+          className="select select-bordered ml-2"
           value={sortBy}
         >
           <option value="">Sort By</option>
@@ -91,7 +70,7 @@ const Queries = () => {
       </div>
 
       {/* Products Grid */}
-      <div className={`grid ${gridCols} gap-4 p-2 sm:p-10`}>
+      <div className={"grid grid-cols-1 sm:grid-cols-3 gap-4 p-2 sm:p-10"}>
         {filteredProducts?.map((product) => (
           <Query key={product._id} product={product} />
         ))}

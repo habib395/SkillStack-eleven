@@ -29,7 +29,7 @@ const RecommendationMe = () => {
   }
 
   return (
-    <div className='w-11/12 mx-auto py-5'>
+    <div className='w-11/12 mx-auto sm:my-32'>
       <table className='table-auto border-collapse border border-gray-50'>
         <thead>
           <tr className='bg-gray-100'>

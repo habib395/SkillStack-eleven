@@ -41,7 +41,6 @@ const Details = () => {
     productName,
     BoycottingReasonDetails,
   } = useLoaderData();
-  // console.log(userImage)
   useEffect(() => {
     setRecommendationCount(initialRecommendationCount);
   }, [initialRecommendationCount]);
@@ -62,7 +61,6 @@ const Details = () => {
     const recommendationProductName = form.recommendationProductName.value;
     const recommendationPhotoURL = form.recommendationPhotoURL.value;
     const recommendationReason = form.recommendationReason.value;
-
     const queryId = _id;
     const newReQueries = {
       queryId,
@@ -86,7 +84,6 @@ const Details = () => {
       .then((postResponse) => {
         const data = postResponse.data;
         if (data.insertedId) {
-          // Recommendation successfully added, now increment recommendation count
           axios
             .put(`https://recommendation-eleven-ph.vercel.app/incrementRecommendation/${queryId}`)
             .then((putResponse) => {

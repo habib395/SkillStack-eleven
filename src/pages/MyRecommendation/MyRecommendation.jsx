@@ -23,7 +23,7 @@ const AllRecommendations = () => {
   return (
     <>
       <div>
-        <div className="w-10/12 mx-auto">
+        <div className="w-10/12 mx-auto sm:my-32">
         <table className="table-auto border-collapse  border border-gray-300">
           <thead>
             <tr className="bg-gray-100">

@@ -3,18 +3,22 @@ import Slider from "../../Slider/Slider";
 import About from "./About";
 import { useLoaderData } from "react-router-dom";
 import ProductCard from "../ProductCard/ProductCard";
+import Feature from "./Feature";
+
 
 const Home = () => {
   const products = useLoaderData();
   return (
     <div className="min-h-screen bg-gray-200 text-gray-900 mt-16">
       <Slider></Slider>
+      {/* feature products section */}
+      <Feature></Feature>
       {/* our products section */}
       <div>
         <h2 className="text-blue-500 font-bold text-xl sm:text-4xl text-center py-3">
-          OUR PRODUCT
+          RECENT PRODUCTS
         </h2>
-        <div className="w-10/12 mx-auto grid grid-cols-1 md:grid-cols-4 gap-4 p-2 sm:p-10">
+        <div className="w-3/4 mx-auto grid grid-cols-1 md:grid-cols-4 gap-4 p-2 sm:p-10">
           {products.map((product, idx) => (
             <ProductCard key={idx} product={product}></ProductCard>
           ))}
@@ -30,12 +34,12 @@ const Home = () => {
       {/* satisfaction section */}
       <div className="py-10">
         <h2 className="text-blue-600 font-bold text-2xl sm:text-4xl text-center py-6 uppercase">
-          Our Customer Satisfaction
+          REVIEWS
         </h2>
 
         <div className="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Card 1 */}
-          <div className="flex border-2 rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform bg-white">
+          <div className="flex items-center border-2 rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform bg-white">
             <figure className="w-1/3 h-full">
               <img
                 className="w-full h-full object-cover"
@@ -50,14 +54,14 @@ const Home = () => {
                 significantly higher than other milk powders available in the
                 market. I wish it was more affordable for regular use."
               </p>
-              <p className="text-sm font-bold">
+              <p className="text-sm text-blue-500 font-bold">
                 Michael J., Pro Footballer
               </p>
             </div>
           </div>
 
           {/* Card 2 */}
-          <div className="flex border-2 rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform bg-white">
+          <div className="flex items-center border-2 rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform bg-white">
             <figure className="w-1/3 h-full">
               <img
                 className="w-full h-full object-cover"
