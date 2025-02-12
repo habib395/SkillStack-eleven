@@ -44,7 +44,7 @@ const Navbar = () => {
 
         {/* Navigation Links */}
         <div
-          className={`absolute md:static top-16 left-0 w-full md:w-auto bg-white dark:bg-gray-800 md:flex space-x-6 items-center transition-all duration-300 ${
+          className={`absolute md:static top-16 left-0 w-full md:w-auto bg-white dark:bg-gray-900 md:flex space-x-6 items-center transition-all duration-300 ${
             isOpen ? "block" : "hidden"
           } md:block`}
         >
