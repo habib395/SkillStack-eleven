@@ -1,22 +1,28 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
+import LoadingSpinner from './LoadingSpinner';
+import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const Category = () => {
+  const { loading } = useContext(AuthContext)
   const { categoryName } = useParams();
   const [filteredData, setFilteredData] = useState([]);
 
+  
   useEffect(() => {
     axios
-      .get("https://recommendation-eleven-ph.vercel.app/addQueries")
-      .then((response) => {
-        const data = response.data;
-        const filteredItems = data.filter((item) =>
+    .get("https://recommendation-eleven-ph.vercel.app/addQueries")
+    .then((response) => {
+      const data = response.data;
+      const filteredItems = data.filter((item) =>
           item.category.toLowerCase().includes(categoryName.toLowerCase())
-        );
-        setFilteredData(filteredItems);
-      });
-  }, [categoryName]);
+    );
+    setFilteredData(filteredItems);
+  });
+}, [categoryName]);
+
+  //  if(loading)
 
   return (
     <div className=" dark:bg-gray-900 dark:text-white">
@@ -26,7 +32,7 @@ const Category = () => {
         </h2>
         {filteredData.length === 0 ? (
           <p className="text-center text-gray-500 mt-4 dark:text-gray-400">
-            No products found in this category
+             <LoadingSpinner></LoadingSpinner>
           </p>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6">

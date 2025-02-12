@@ -4,6 +4,7 @@ import ListQuery from "../ListQueries/ListQuery";
 import axios from "axios";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { IoSearchSharp } from "react-icons/io5";
+import LoadingSpinner from "../Home/LoadingSpinner";
 
 const MyQueries = () => {
   const { email } = useParams();
@@ -77,7 +78,8 @@ const MyQueries = () => {
               />
             ))
           ) : (
-            <p>No product found for this user.</p>
+            <LoadingSpinner></LoadingSpinner>
+            // <p>No product found for this user.</p>
           )}
         </div>
       </ul>
